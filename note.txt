@@ -1,0 +1,70 @@
+API Documentation:
+
+1 Register Api
+https://restapinodejs.onrender.com/api/register
+(Body Filed: name, email, mobile, password, post request )
+2 login Api
+https://restapinodejs.onrender.com/api/login 
+(Body Filed: email and password, post request)
+3 blog Api
+https://restapinodejs.onrender.com/api/allBlog
+4 blog details
+https://restapinodejs.onrender.com/api/blogdetails/649be0ab7c7468b9a9464fe4
+5 blog image
+https://restapinodejs.onrender.com/api/blog/image/649be0ab7c7468b9a9464fe4
+
+6 All Category
+https://restapinodejs.onrender.com/api/showallcategory
+7 Category with post
+https://restapinodejs.onrender.com/api/category/post/64944158bae2325ed6ce79c2
+8 Recent post
+https://restapinodejs.onrender.com/api/letest-post
+9 Search post  get request
+https://restapinodejs.onrender.com/api/search
+10 All Banner
+https://restapinodejs.onrender.com/api/banner
+11 Banner image
+https://restapinodejs.onrender.com/api/banner/photo/649bdd7d65a1da273f10c2b9
+12 Service api
+https://restapinodejs.onrender.com/api/service
+13 Testimonials Api
+https://restapinodejs.onrender.com/api/testimonial
+14 Testimonials photo
+https://restapinodejs.onrender.com/api/testimonials/photo/649ae214eac9521c7ef294dc
+15 Our Team
+https://restapinodejs.onrender.com/api/team
+16 Our Team image
+https://restapinodejs.onrender.com/api/team/photo/649bb8ccddaf1e0cdd863956
+17 Course
+https://restapinodejs.onrender.com/api/course
+18 Course picture
+https://restapinodejs.onrender.com/api/course/photo/649ad864eac9521c7ef293dd
+19 Apply Course 
+https://restapinodejs.onrender.com/api/course/apply/649ada0ceac9521c7ef29407
+( 
+post request : use param for particular course
+"name":"raju",
+    "email":"raju@gmail.com",
+    "phone":"9988965623",
+    "city":"kolkata",
+    "address":"jadavpur kolkata",
+    "qualification":"mca",
+    "programing_knowledge":"c programming",
+    "experiance":"6 month"
+
+)
+
+20 Contact us
+https://restapinodejs.onrender.com/api/contact/create
+21 Comment create
+https://restapinodejs.onrender.com/api/blog/649d61049e8a8a3931e537ab/comment/create
+(
+post  request:
+{
+    "name":"varsha",
+    "email":"varsha@gmail.com",
+    "comment":"I didn't start with a static generator"
+}
+)
+22 Comment fetch 
+https://restapinodejs.onrender.com/api/comment/649d616f9e8a8a3931e537b3

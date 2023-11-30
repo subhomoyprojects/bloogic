@@ -1,0 +1,58 @@
+@import "./assets/scss/config";
+
+h1 {
+  font-size: 5rem;
+  span {
+    color: $primaryColor;
+  }
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+h4 {
+  font-size: 1.8rem;
+}
+h5 {
+  font-size: 1.6rem;
+}
+p {
+  @include poppins();
+}
+.mt-10 {
+  margin-top: 1rem;
+}
+.mt-20 {
+  margin-top: 2rem;
+}
+.mt-30 {
+  margin-top: 3rem;
+}
+.mt-40 {
+  margin-top: 4rem;
+}
+.mt-50 {
+  margin-top: 5rem;
+}
+.p-0 {
+  padding: 0 !important;
+}
+.text-center {
+  text-align: center;
+  justify-content: center;
+}
+.text-left {
+  text-align: left;
+  justify-content: flex-start;
+}
+.text-right {
+  text-align: right;
+  justify-content: flex-end;
+}
+.error {
+  font-size: 1.1rem !important;
+  color: $errorColor;
+}
