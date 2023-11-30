@@ -6,4 +6,6 @@ export const ColorPalette = {
   textColor: "#707070",
   inputBorderColor: "rgba(112, 112, 112, 0.41)",
   errorColor: "#d32f2f",
+  shadowColor: "rgba(0, 0, 0, 0.1)",
+  offWhite: "#f2f2f2",
 };

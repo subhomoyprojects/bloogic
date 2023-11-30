@@ -5,7 +5,7 @@ import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 
 const Home = lazy(() => import("../src/cms/Home"));
-const About = lazy(() => import("../src/cms/About"));
+const WriteForUS = lazy(() => import("../src/cms/WriteForUS"));
 const Blog = lazy(() => import("../src/cms/Blog"));
 const Login = lazy(() => import("../src/auth/Login"));
 const Signup = lazy(() => import("../src/auth/Signup"));
@@ -32,8 +32,8 @@ const PublicRouteNames = [
     Component: <Home />,
   },
   {
-    path: "/about",
-    Component: <About />,
+    path: "/write-for-us",
+    Component: <WriteForUS />,
   },
   {
     path: "/blog/details/:id",
