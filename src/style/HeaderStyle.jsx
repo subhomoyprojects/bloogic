@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { ColorPalette } from "../assets/scss/ThemePalet";
 
 export const HeaderHolder = styled(Box)`
@@ -118,6 +118,9 @@ export const HeaderHolder = styled(Box)`
           background-color: transparent;
           padding: 0 0 2px;
           position: relative;
+          svg {
+            font-size: 2.2rem;
+          }
           &::after {
             content: "";
             width: auto;
@@ -142,4 +145,46 @@ export const HeaderHolder = styled(Box)`
   }
 `;
 
-export const NavButton = styled(Button)``;
+export const LatestPost = styled(Box)`
+  background-color: ${ColorPalette.primaryColor};
+  color: ${ColorPalette.whiteColor};
+  padding-block: 1rem;
+  .MuiContainer-root {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+  }
+  span {
+    text-transform: uppercase;
+    font-weight: 300;
+    flex: 0 0 auto;
+  }
+  p {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    font-size: 1.8rem;
+    strong {
+      flex: 0 0 auto;
+      width: 100%;
+      display: inline-flex;
+      font-weight: 500;
+      text-transform: uppercase;
+      text-shadow: 0 0 0.2rem ${ColorPalette.shadowColor};
+      animation: marquee 20s linear infinite;
+    }
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+`;

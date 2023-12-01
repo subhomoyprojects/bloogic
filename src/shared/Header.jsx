@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { HeaderHolder, NavButton } from "../style/HeaderStyle";
+import { HeaderHolder, LatestPost } from "../style/HeaderStyle";
 import assets from "../assets";
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import { Navigation, Social } from "../json/Menu";
 import { useState } from "react";
+import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
@@ -20,9 +21,9 @@ export default function Header() {
                 {Navigation.map((item) => (
                   <li key={item.id} className={item.subLink && subMenu ? "subMenu active" : "subMenu"}>
                     {item.subLink ? (
-                      <NavButton onClick={() => setSubMenu(!subMenu)} variant="text">
-                        {item.label}
-                      </NavButton>
+                      <Button onClick={() => setSubMenu(!subMenu)} variant="text">
+                        {item.label} {subMenu ? <ArrowDropUp /> : <ArrowDropDown />}
+                      </Button>
                     ) : (
                       <Link to={item.link}>{item.label}</Link>
                     )}
@@ -53,6 +54,14 @@ export default function Header() {
           </HeaderHolder>
         </Container>
       </header>
+      <LatestPost>
+        <Container>
+          <span>Latest Post:</span>{" "}
+          <p>
+            <strong>10 Best Podcast Tips For Beginners 2024 </strong>
+          </p>
+        </Container>
+      </LatestPost>
     </>
   );
 }
