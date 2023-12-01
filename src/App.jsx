@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
+import Loading from "./common/Loading";
 
 const Home = lazy(() => import("../src/cms/Home"));
 const WriteForUS = lazy(() => import("../src/cms/WriteForUS"));
@@ -81,7 +82,7 @@ function App() {
   };
   return (
     <>
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loading />}>
         <Router>
           {url !== "/login" && url !== "/signup" && <Header />}
           <MyRoutes locationGet={locationGet} />
