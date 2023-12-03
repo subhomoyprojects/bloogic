@@ -1,19 +1,20 @@
 import { Box, IconButton, Typography } from "@mui/material";
 import assets from "../assets";
 import { Textsms, Visibility } from "@mui/icons-material";
-export default function CommonCard() {
+import PropTypes from "prop-types";
+export default function CommonCard({ image, catagories, title, description }) {
   return (
     <>
       <Box className="item commonCard">
         <figure>
-          <img src={assets.podcast} alt="" />
+          <img src={image ? image : assets.noImage} alt="" />
           <Typography variant="h4" className="cardCatagories">
-            Marketing
+            {catagories ? catagories : "no catagories"}
           </Typography>
         </figure>
         <Box className="cardContent">
-          <Typography variant="h3">10 Best Podcast Tips For Beginners 2024</Typography>
-          <Typography variant="body1">Successful podcast tips for beginners are a long game if you want to start a podcast in 2024. Today&</Typography>
+          <Typography variant="h3">{title}</Typography>
+          {description ? <Typography variant="body1">{description}</Typography> : null}
           <Box className="commentSection">
             <p>
               <span>November 25, 2023</span> | <span>6 min read</span>
@@ -36,3 +37,9 @@ export default function CommonCard() {
     </>
   );
 }
+CommonCard.propTypes = {
+  image: PropTypes.string,
+  catagories: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+};

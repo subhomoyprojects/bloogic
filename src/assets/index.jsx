@@ -7,6 +7,7 @@ import twitter from "./images/Twitter-X-blue.svg";
 import youtube from "./images/youtube.svg";
 import search from "./images/search.svg";
 import podcast from "./images/podcast.png";
+import noImage from "./images/noImage.jpg";
 
 export default {
   logo,
@@ -18,4 +19,5 @@ export default {
   youtube,
   search,
   podcast,
+  noImage,
 };
