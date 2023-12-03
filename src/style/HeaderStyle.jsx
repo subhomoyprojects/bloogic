@@ -6,6 +6,8 @@ export const HeaderHolder = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 2;
   .logo {
     img {
       max-height: 8rem;
@@ -67,6 +69,20 @@ export const HeaderHolder = styled(Box)`
         margin-top: 1.5rem;
         gap: 0;
         border: 1px solid ${ColorPalette.shadowColor};
+        &::before {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 1.2rem 1.2rem;
+          border-color: transparent transparent ${ColorPalette.whiteColor};
+          bottom: 100%;
+          filter: drop-shadow(-2px -4px 4px ${ColorPalette.shadowColor});
+          left: 3rem;
+          z-index: 2;
+          margin-bottom: -1px;
+        }
         li {
           width: 100%;
           padding: 0;
@@ -92,20 +108,6 @@ export const HeaderHolder = styled(Box)`
       justify-content: center;
       gap: 2rem;
       position: relative;
-      &::before {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 1.2rem 1.2rem;
-        border-color: transparent transparent ${ColorPalette.whiteColor};
-        bottom: 100%;
-        filter: drop-shadow(-2px -4px 4px ${ColorPalette.shadowColor});
-        left: 3rem;
-        z-index: 2;
-        margin-bottom: -1px;
-      }
       li {
         padding-inline: 1rem;
         position: relative;

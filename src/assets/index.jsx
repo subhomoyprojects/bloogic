@@ -6,6 +6,7 @@ import pinterest from "./images/pinterest-p.svg";
 import twitter from "./images/Twitter-X-blue.svg";
 import youtube from "./images/youtube.svg";
 import search from "./images/search.svg";
+import podcast from "./images/podcast.png";
 
 export default {
   logo,
@@ -16,4 +17,5 @@ export default {
   twitter,
   youtube,
   search,
+  podcast,
 };
