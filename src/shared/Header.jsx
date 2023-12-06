@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { HeaderHolder, LatestPost } from "../style/HeaderStyle";
 import assets from "../assets";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, IconButton } from "@mui/material";
 import { Navigation, Social } from "../json/Menu";
 import { useState } from "react";
-import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
+import { ArrowDropDown, ArrowDropUp, Group, Search } from "@mui/icons-material";
 
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
@@ -49,6 +49,18 @@ export default function Header() {
                     </a>
                   </li>
                 ))}
+              </ul>
+              <ul className="searchAbater">
+                <li>
+                  <IconButton aria-label="search">
+                    <Search />
+                  </IconButton>
+                </li>
+                <li className="abater">
+                  <Link to="/login">
+                    <Group />
+                  </Link>
+                </li>
               </ul>
             </Box>
           </HeaderHolder>

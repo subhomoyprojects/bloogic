@@ -24,25 +24,56 @@ export const HeaderHolder = styled(Box)`
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        a {
+        a,
+        button {
           display: inline-flex;
-          width: 4.7rem;
-          height: 4.7rem;
+          width: 4.4rem;
+          height: 4.4rem;
           align-items: center;
           justify-content: center;
           border: 1px solid ${ColorPalette.primaryColor};
           border-radius: 100%;
+          color: ${ColorPalette.primaryColor};
+          font-size: 2.2rem;
           &:hover {
             background-color: ${ColorPalette.primaryColor};
             img {
               filter: brightness(0) invert(1);
             }
           }
-          img {
+          img,
+          svg {
             max-width: 4rem;
             transition: all 0.3s;
           }
+          svg {
+            width: 3rem;
+            height: 3rem;
+          }
         }
+      }
+      &.searchAbater {
+        li {
+          button {
+            &:hover {
+              color: ${ColorPalette.whiteColor};
+            }
+          }
+          &.abater {
+            a,
+            button {
+              background-color: ${ColorPalette.primaryColor};
+              color: ${ColorPalette.whiteColor};
+              &:hover {
+                background-color: transparent;
+                color: ${ColorPalette.primaryColor};
+              }
+            }
+          }
+        }
+      }
+      &:last-child {
+        margin-left: 1rem;
       }
     }
   }
@@ -106,14 +137,14 @@ export const HeaderHolder = styled(Box)`
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
       position: relative;
       li {
         padding-inline: 1rem;
         position: relative;
         a,
         button {
-          font-size: 1.8rem;
+          font-size: 1.6rem;
           font-weight: 400;
           text-transform: capitalize;
           color: ${ColorPalette.blackColor};
