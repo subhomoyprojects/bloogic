@@ -13,6 +13,7 @@ $inputBorderColor: rgba(112, 112, 112, 0.41);
 $placeholderColor: #c5c4c4;
 $textColor: #707070;
 $errorColor: #d32f2f;
+$offWhite: #e9e9e9;
 
 // font-weight
 $font-weights: (
@@ -450,16 +451,8 @@ section {
     padding: 20px 0;
   }
 
-  @include mobile {
-    padding: 30px 0;
-  }
-
-  @include tabLandscape {
-    padding: 40px 0;
-  }
-
   @include desktop {
-    padding: 60px 0;
+    padding: 30px 0;
   }
 }
 .text-center {

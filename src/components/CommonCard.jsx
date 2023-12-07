@@ -2,10 +2,11 @@ import { Box, IconButton, Typography } from "@mui/material";
 import assets from "../assets";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
+import { CustomCard } from "../style/CustomCardStyle";
 export default function CommonCard({ image, catagories, title, description }) {
   return (
     <>
-      <Box className="item commonCard">
+      <CustomCard className="item commonCard">
         <figure>
           <img src={image ? image : assets.noImage} alt="" />
           <Typography variant="h4" className="cardCatagories">
@@ -33,7 +34,7 @@ export default function CommonCard({ image, catagories, title, description }) {
             </ul>
           </Box>
         </Box>
-      </Box>
+      </CustomCard>
     </>
   );
 }

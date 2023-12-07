@@ -1,7 +1,7 @@
 @import "./assets/scss/config";
 
 h1 {
-  font-size: 5rem;
+  font-size: 3.5rem;
   span {
     color: $primaryColor;
   }
@@ -10,13 +10,16 @@ h2 {
   font-size: 3rem;
 }
 h3 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   line-height: 1;
 }
 h4 {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
 }
 h5 {
+  font-size: 1.8rem;
+}
+h6 {
   font-size: 1.6rem;
 }
 p {
@@ -69,99 +72,11 @@ a,
 .headerWrapper {
   padding-block: 1.5rem;
 }
-.commonCard {
-  position: relative;
-  &::after {
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(0deg, $primaryColor 0%, rgba($color: $primaryColor, $alpha: 0.01) 50%);
-    position: absolute;
-    z-index: 1;
-  }
-  figure {
-    line-height: 0;
-    position: relative;
-    z-index: 0;
-    &::before {
-      content: "";
-      height: 0.5em;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      background-color: $primaryColor;
-      z-index: 1;
-    }
-    .cardCatagories {
-      position: absolute;
-      top: 0;
-      right: 1em;
-      background-color: $primaryColor;
-      color: $whiteColor;
-      padding: 1em 1em 0.8em;
-      font-size: clamp(1.4rem, 1.125vw, 2rem);
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 500;
-      z-index: 2;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-  .cardContent {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: auto;
-    padding: 2rem;
-    color: $whiteColor;
-    z-index: 2;
-    h3 {
-      color: $whiteColor;
-      font-size: clamp(2rem, 1.875vw, 3.5rem);
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: clamp(1.4rem, 1vw, 1.8rem);
-      font-weight: 600;
-    }
-    .commentSection {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1rem;
-      p {
-        margin-bottom: 0;
-        font-weight: 400;
-      }
-      ul {
-        display: inline-flex;
-        align-items: center;
-        justify-content: flex-end;
-        li {
-          button {
-            color: $whiteColor;
-            font-size: clamp(1.4rem, 1vw, 1.8rem);
-            &:hover {
-              opacity: 0.7;
-            }
-            svg {
-              width: 1.7em;
-              height: 1.7em;
-              @include transition(0.3s);
-            }
-          }
-        }
-      }
-    }
+.bannerWrapper {
+  background-color: $offWhite;
+}
+.css-1oqqzyl-MuiContainer-root {
+  @media (min-width: 1601px) {
+    max-width: 1400px;
   }
 }
