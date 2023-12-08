@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import { BannerHolder } from "../style/HomeBanner";
 import CommonCard from "../components/CommonCard";
 import CommonHeaderComponent from "../components/CommonHeaderComponent";
@@ -6,6 +6,7 @@ import { HeaderHolder } from "../style/CommonHeaderStyle";
 import { SliderHolder } from "../style/SliderHolderStyle";
 import CommonCardTwoComponent from "../components/commonCardTwoComponent";
 import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
+import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 
 export default function Home() {
   return (
@@ -70,6 +71,32 @@ export default function Home() {
               </Box>
             </SliderHolder>
           </CommonCardWrapper>
+        </Container>
+      </section>
+      <section className="latestArticlesWRapper">
+        <Container>
+          <Grid container spacing={4}>
+            <Grid item sm={6} lg={8}>
+              <LatestArticlesHolder>
+                <HeaderHolder>
+                  <CommonHeaderComponent title="Latest articles" variant="h2" />
+                </HeaderHolder>
+                <CommonCardTwoComponent className="latestArticlesItem" />
+              </LatestArticlesHolder>
+            </Grid>
+            <Grid item sm={6} lg={4}>
+              <EditorPicks>
+                <HeaderHolder>
+                  <CommonHeaderComponent title="Editor's picks" variant="h2" />
+                </HeaderHolder>
+              </EditorPicks>
+              <Categories>
+                <HeaderHolder>
+                  <CommonHeaderComponent title="Categories" variant="h2" />
+                </HeaderHolder>
+              </Categories>
+            </Grid>
+          </Grid>
         </Container>
       </section>
     </>

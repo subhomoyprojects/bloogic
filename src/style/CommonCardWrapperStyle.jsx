@@ -57,6 +57,7 @@ export const CommonCardTwo = styled(Box)`
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        margin-bottom: 1.5rem;
       }
     }
   }
