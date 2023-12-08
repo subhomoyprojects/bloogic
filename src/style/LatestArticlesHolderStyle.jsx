@@ -5,6 +5,10 @@ import { ColorPalette } from "../assets/scss/ThemePalet";
 export const LatestArticlesHolder = styled(Box)`
   .latestArticlesItem {
     background-color: ${ColorPalette.lightSky};
+    box-shadow: 2px 2px 5px ${ColorPalette.shadowColor};
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
   }
   .imgHolderTwo {
     width: 30%;
@@ -15,5 +19,25 @@ export const LatestArticlesHolder = styled(Box)`
   }
 `;
 
-export const EditorPicks = styled(Box)``;
-export const Categories = styled(Box)``;
+export const EditorPicks = styled(Box)`
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid ${ColorPalette.lightBlueBorder};
+  .editorPicks {
+    flex-wrap: wrap;
+    & > * {
+      width: 100%;
+    }
+    .cardContentTwo {
+      padding-left: 0;
+      padding-top: 1.5rem;
+    }
+  }
+`;
+export const Categories = styled(Box)`
+  margin-top: 3rem;
+  padding: 1rem;
+  border: 1px solid ${ColorPalette.lightBlueBorder};
+  position: sticky;
+  top: 3rem;
+`;
