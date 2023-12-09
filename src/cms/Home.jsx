@@ -1,4 +1,4 @@
-import { Avatar, Box, Container, Grid, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import { Box, Container, Grid, List } from "@mui/material";
 import { BannerHolder } from "../style/HomeBanner";
 import CommonCard from "../components/CommonCard";
 import CommonHeaderComponent from "../components/CommonHeaderComponent";
@@ -7,7 +7,7 @@ import { SliderHolder } from "../style/SliderHolderStyle";
 import CommonCardTwoComponent from "../components/commonCardTwoComponent";
 import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
-import { Folder } from "@mui/icons-material";
+import CommonList from "../components/CommonList";
 
 export default function Home() {
   return (
@@ -97,14 +97,10 @@ export default function Home() {
                   <CommonHeaderComponent title="Categories" variant="h2" />
                 </HeaderHolder>
                 <List>
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <Folder />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText primary="Single-line item" />
-                  </ListItem>
+                  <CommonList />
+                  <CommonList />
+                  <CommonList />
+                  <CommonList />
                 </List>
               </Categories>
             </Grid>

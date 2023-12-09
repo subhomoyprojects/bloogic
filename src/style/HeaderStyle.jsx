@@ -137,7 +137,7 @@ export const HeaderHolder = styled(Box)`
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 1rem;
       position: relative;
       li {
         padding-inline: 1rem;

@@ -6,11 +6,15 @@ import Footer from "./shared/Footer";
 import Loading from "./common/Loading";
 
 const Home = lazy(() => import("../src/cms/Home"));
-const WriteForUS = lazy(() => import("../src/cms/WriteForUS"));
+const Team = lazy(() => import("./cms/Team"));
+const Course = lazy(() => import("./cms/Course.jsx"));
+const Service = lazy(() => import("./cms/Service.jsx"));
 const Blog = lazy(() => import("../src/cms/Blog"));
 const Login = lazy(() => import("../src/auth/Login"));
 const Signup = lazy(() => import("../src/auth/Signup"));
 const Profile = lazy(() => import("../src/user/Profile"));
+const Terms = lazy(() => import("../src/cms/TermsAndCondition.jsx"));
+const Privacy = lazy(() => import("../src/cms/PrivacyPolicy.jsx"));
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
@@ -33,8 +37,12 @@ const PublicRouteNames = [
     Component: <Home />,
   },
   {
-    path: "/write-for-us",
-    Component: <WriteForUS />,
+    path: "/team",
+    Component: <Team />,
+  },
+  {
+    path: "/service",
+    Component: <Service />,
   },
   {
     path: "/blog/details/:id",
@@ -48,11 +56,23 @@ const PublicRouteNames = [
     path: "/signup",
     Component: <Signup />,
   },
+  {
+    path: "/terms-and-condition",
+    Component: <Terms />,
+  },
+  {
+    path: "/privacy-policy",
+    Component: <Privacy />,
+  },
 ];
 const PrivateRouteNames = [
   {
     path: "/profile",
     Component: <Profile />,
+  },
+  {
+    path: "/course",
+    Component: <Course />,
   },
 ];
 

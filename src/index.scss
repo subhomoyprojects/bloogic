@@ -34,6 +34,10 @@ a,
 *[type="submit"] {
   @include transition(0.3s);
 }
+body,
+p {
+  font-size: 1.6rem;
+}
 .mt-10 {
   margin-top: 1rem;
 }
@@ -80,4 +84,42 @@ a,
   @media (min-width: 1601px) {
     max-width: 1400px;
   }
+}
+.mt-10 {
+  margin-top: 1rem;
+}
+.mt-20 {
+  margin-top: 2rem;
+}
+.mt-30 {
+  margin-top: 3rem;
+}
+.mt-40 {
+  margin-top: 4rem;
+}
+.mt-50 {
+  margin-top: 5rem;
+}
+.p-0 {
+  padding: 0 !important;
+}
+.text-center {
+  text-align: center;
+  justify-content: center;
+}
+.text-left {
+  text-align: left;
+  justify-content: flex-start;
+}
+.text-right {
+  text-align: right;
+  justify-content: flex-end;
+}
+.css-1wc848c-MuiFormHelperText-root {
+  font-size: 1.1rem !important;
+  margin-left: 0 !important;
+}
+.error {
+  font-size: 1.1rem !important;
+  color: #d32f2f;
 }

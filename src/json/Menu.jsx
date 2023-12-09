@@ -8,8 +8,8 @@ export const Navigation = [
   },
   {
     id: "nav2",
-    link: "/write-for-us",
-    label: "Write For Us",
+    link: "/team",
+    label: "Team",
   },
   {
     id: "nav3",
@@ -18,6 +18,16 @@ export const Navigation = [
   },
   {
     id: "nav4",
+    link: "/course",
+    label: "Course",
+  },
+  {
+    id: "nav5",
+    link: "/service",
+    label: "Service",
+  },
+  {
+    id: "nav6",
     link: "/category",
     label: "Category",
     subLink: [
@@ -69,7 +79,7 @@ export const Navigation = [
     ],
   },
   {
-    id: "nav5",
+    id: "nav7",
     link: "/contact",
     label: "Contact",
   },

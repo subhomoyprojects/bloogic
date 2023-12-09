@@ -17,11 +17,15 @@ export const LatestArticlesHolder = styled(Box)`
     width: 70%;
     padding: 1.5rem;
   }
+  h2 {
+    border-bottom: 1px solid ${ColorPalette.primaryColor};
+    flex: 1;
+  }
 `;
 
 export const EditorPicks = styled(Box)`
   flex-direction: column;
-  padding: 1rem;
+  padding: 2rem;
   border: 1px solid ${ColorPalette.lightBlueBorder};
   .editorPicks {
     flex-wrap: wrap;
@@ -36,7 +40,7 @@ export const EditorPicks = styled(Box)`
 `;
 export const Categories = styled(Box)`
   margin-top: 3rem;
-  padding: 1rem;
+  padding: 2rem;
   border: 1px solid ${ColorPalette.lightBlueBorder};
   position: sticky;
   top: 3rem;
