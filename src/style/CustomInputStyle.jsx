@@ -26,4 +26,7 @@ export const CustomInputHolder = styled(FormControl)`
   .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
     border-radius: 0.5rem;
   }
+  .css-1wc848c-MuiFormHelperText-root {
+    color: ${ColorPalette.errorColor};
+  }
 `;
