@@ -25,20 +25,20 @@ export default function Signup() {
 
         <CustomInputHolder variant="outlined">
           <InputLabel>Enter Your Email</InputLabel>
-          <OutlinedInput type="email" label="Enter Your Email" />
-          <FormHelperText></FormHelperText>
+          <OutlinedInput type="email" label="Enter Your Email" {...register("email", { required: true, pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/ })} error={!!errors.email} />
+          <FormHelperText>{errors.email?.type === "required" ? "Please Input Email" : errors.email?.type === "pattern" ? "Please put valid email address" : ""}</FormHelperText>
         </CustomInputHolder>
 
         <CustomInputHolder variant="outlined">
           <InputLabel>Enter Your Phone Number</InputLabel>
-          <OutlinedInput type="number" label="Enter Your Phone Number" />
-          <FormHelperText></FormHelperText>
+          <OutlinedInput type="number" label="Enter Your Phone Number" {...register("mobile", { required: true, maxLength: 10 })} error={!!errors.mobile} />
+          <FormHelperText>{errors.mobile?.type == "required" ? "Mobile Number Required" : errors.mobile?.type === "maxLength" ? "Put valid mobile number" : ""}</FormHelperText>
         </CustomInputHolder>
 
         <CustomInputHolder variant="outlined">
           <InputLabel>Enter Your Password</InputLabel>
-          <OutlinedInput type="password" label="Enter Your Password" />
-          <FormHelperText></FormHelperText>
+          <OutlinedInput type="password" label="Enter Your Password" {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/ })} />
+          <FormHelperText>{errors.password?.type === "required" ? "Password is required" : errors.password?.type === "pattern" ? "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number, and one special character" : ""}</FormHelperText>
         </CustomInputHolder>
 
         <CommonBtn type="submit" variant="contained">
