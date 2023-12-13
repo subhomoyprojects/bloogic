@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance, { status } from "../Helper";
+import { toast } from "react-toastify";
 
 export const registerAuth = createAsyncThunk("/register", async (formData) => {
   let res = await axiosInstance.post("/register", formData);
@@ -26,9 +27,17 @@ export const AuthSlice = createSlice({
       })
       .addCase(registerAuth.fulfilled, (state, { payload }) => {
         state.status = status.idle;
+        if (payload.success) {
+          toast.success(`${payload.message}`);
+        } else if (payload.success === false) {
+          toast.error(`${payload.msg}`);
+        }
       })
-      .addCase(registerAuth.rejected, (state) => {
+      .addCase(registerAuth.rejected, (state, { payload }) => {
         state.status = status.error;
+        if (payload.success === false) {
+          toast.error(`${payload.msg}`);
+        }
       })
 
       .addCase(LoginAuth.pending, (state) => {
