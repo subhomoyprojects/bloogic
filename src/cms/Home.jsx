@@ -46,8 +46,8 @@ export default function Home() {
                 <Box className="sliderItemHolder">
                   <CommonCard />
                   <Box className="sliderRight">
-                    <CommonCardTwoComponent />
-                    <CommonCardTwoComponent />
+                    <CommonCardTwoComponent className="mostView" />
+                    <CommonCardTwoComponent className="mostView" />
                   </Box>
                 </Box>
               </Box>
