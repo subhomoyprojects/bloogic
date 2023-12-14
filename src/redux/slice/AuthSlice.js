@@ -29,21 +29,20 @@ export const AuthSlice = createSlice({
         state.status = status.idle;
         if (payload.success) {
           toast.success(`${payload.message}`);
-        } else if (payload.success === false) {
-          toast.error(`${payload.msg}`);
+        } else {
+          toast.error(`${payload.message || "Registration failed."}`);
         }
       })
-      .addCase(registerAuth.rejected, (state, { payload }) => {
+      .addCase(registerAuth.rejected, (state, { error }) => {
         state.status = status.error;
-        if (payload.success === false) {
-          toast.error(`${payload.msg}`);
-        }
+        const errorMessage = error?.msg || "Registration failed. Please try again later.";
+        toast.error(errorMessage);
       })
 
       .addCase(LoginAuth.pending, (state) => {
         state.status = status.loading;
       })
-      .addCase(LoginAuth.fulfilled, (state, { payload }) => {
+      .addCase(LoginAuth.fulfilled, (state) => {
         state.status = status.idle;
       })
       .addCase(LoginAuth.rejected, (state) => {

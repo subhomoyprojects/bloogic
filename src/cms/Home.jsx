@@ -64,10 +64,10 @@ export default function Home() {
             <SliderHolder>
               <Box className="sliderItem">
                 <Box className="sliderItemHolder">
-                  <CommonCardTwoComponent />
-                  <CommonCardTwoComponent />
-                  <CommonCardTwoComponent />
-                  <CommonCardTwoComponent />
+                  <CommonCardTwoComponent className="trendingCard" />
+                  <CommonCardTwoComponent className="trendingCard" />
+                  <CommonCardTwoComponent className="trendingCard" />
+                  <CommonCardTwoComponent className="trendingCard" />
                 </Box>
               </Box>
             </SliderHolder>
