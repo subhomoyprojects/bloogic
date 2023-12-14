@@ -2,11 +2,11 @@ import { Box, IconButton, Typography } from "@mui/material";
 import assets from "../assets";
 import { CommonCardTwo } from "../style/CommonCardWrapperStyle";
 import { Textsms, Visibility } from "@mui/icons-material";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-export default function CommonCardTwoComponent() {
+export default function CommonCardTwoComponent({ className }) {
   return (
-    <CommonCardTwo>
+    <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">
         <img src={assets.noImage} alt="" />
       </figure>
@@ -35,6 +35,6 @@ export default function CommonCardTwoComponent() {
     </CommonCardTwo>
   );
 }
-// CommonCardTwoComponent.propTypes = {
-//   className: PropTypes.string,
-// };
+CommonCardTwoComponent.propTypes = {
+  className: PropTypes.string,
+};

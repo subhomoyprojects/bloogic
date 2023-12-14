@@ -4,7 +4,7 @@ import CommonCard from "../components/CommonCard";
 import CommonHeaderComponent from "../components/CommonHeaderComponent";
 import { HeaderHolder } from "../style/CommonHeaderStyle";
 import { SliderHolder } from "../style/SliderHolderStyle";
-import CommonCardTwoComponent from "../components/commonCardTwoComponent";
+// import CommonCardTwoComponent from "../components/commonCardTwoComponent";
 import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
@@ -46,8 +46,8 @@ export default function Home() {
                 <Box className="sliderItemHolder">
                   <CommonCard />
                   <Box className="sliderRight">
-                    <CommonCardTwoComponent className="mostView" />
-                    <CommonCardTwoComponent className="mostView" />
+                    {/* <CommonCardTwoComponent className="mostView" />
+                    <CommonCardTwoComponent className="mostView" /> */}
                   </Box>
                 </Box>
               </Box>
@@ -64,10 +64,10 @@ export default function Home() {
             <SliderHolder>
               <Box className="sliderItem">
                 <Box className="sliderItemHolder">
+                  {/* <CommonCardTwoComponent className="trendingCard" />
                   <CommonCardTwoComponent className="trendingCard" />
                   <CommonCardTwoComponent className="trendingCard" />
-                  <CommonCardTwoComponent className="trendingCard" />
-                  <CommonCardTwoComponent className="trendingCard" />
+                  <CommonCardTwoComponent className="trendingCard" /> */}
                 </Box>
               </Box>
             </SliderHolder>
@@ -82,7 +82,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Latest articles" variant="h2" />
                 </HeaderHolder>
-                <CommonCardTwoComponent className="latestArticlesItem" />
+                {/* <CommonCardTwoComponent className="latestArticlesItem" /> */}
               </LatestArticlesHolder>
             </Grid>
             <Grid item sm={6} lg={4}>
@@ -90,7 +90,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Editor's picks" variant="h2" />
                 </HeaderHolder>
-                <CommonCardTwoComponent className="editorPicks" />
+                {/* <CommonCardTwoComponent className="editorPicks" /> */}
               </EditorPicks>
               <Categories>
                 <HeaderHolder>
