@@ -3,9 +3,13 @@ import { HeaderHolder } from "../style/HeaderStyle";
 import assets from "../assets";
 import { Box, Container } from "@mui/material";
 import { Social } from "../json/Menu";
-import { Group } from "@mui/icons-material";
+import { Group, Logout } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slice/AuthSlice";
 
 export default function AuthHeader() {
+  const { isLogin } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
   return (
     <>
       <header className="headerWrapper">
@@ -26,9 +30,15 @@ export default function AuthHeader() {
               </ul>
               <ul className="searchAbater">
                 <li className="abater">
-                  <Link to="/login">
-                    <Group />
-                  </Link>
+                  {isLogin ? (
+                    <button type="button" onClick={dispatch(logout)}>
+                      <Logout />
+                    </button>
+                  ) : (
+                    <Link to="/login">
+                      <Group />
+                    </Link>
+                  )}
                 </li>
               </ul>
             </Box>

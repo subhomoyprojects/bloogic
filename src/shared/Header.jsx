@@ -5,12 +5,14 @@ import { Box, Button, Container, IconButton } from "@mui/material";
 import { Navigation, Social } from "../json/Menu";
 import { useState } from "react";
 import { ArrowDropDown, ArrowDropUp, Group, Logout, Search } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slice/AuthSlice";
 
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
   const { isLogin } = useSelector((state) => state.Auth);
   console.log(isLogin);
+  const dispatch = useDispatch();
   return (
     <>
       <header className="headerWrapper">
@@ -61,7 +63,7 @@ export default function Header() {
                 </li>
                 <li className="abater">
                   {isLogin ? (
-                    <button type="button">
+                    <button type="button" onClick={dispatch(logout)}>
                       <Logout />
                     </button>
                   ) : (
