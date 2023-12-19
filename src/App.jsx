@@ -4,6 +4,8 @@ import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from "r
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 import Loading from "./common/Loading";
+import { useDispatch } from "react-redux";
+import { tokenCheck } from "./redux/slice/AuthSlice.js";
 
 const Home = lazy(() => import("../src/cms/Home"));
 const Team = lazy(() => import("./cms/Team"));
@@ -96,10 +98,17 @@ MyRoutes.propTypes = {
   locationGet: PropTypes.func.isRequired,
 };
 function App() {
+  const dispatch = useDispatch();
   const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    dispatch(tokenCheck());
+  }, [dispatch]);
+
   const locationGet = (location) => {
     setUrl(location);
   };
+
   return (
     <>
       <Suspense fallback={<Loading />}>

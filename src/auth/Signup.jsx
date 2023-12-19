@@ -18,13 +18,13 @@ export default function Signup() {
   const onHandelSubmit = async (data) => {
     try {
       const { name, email, mobile, password } = data;
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("mobile", mobile);
-      formData.append("password", password);
-      const response = await dispatch(registerAuth(formData));
-      console.log(response);
+      const payload = {
+        name: name,
+        email: email,
+        mobile: mobile,
+        password: password,
+      };
+      await dispatch(registerAuth(payload));
     } catch (error) {
       console.log(error);
     }

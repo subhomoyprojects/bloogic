@@ -4,10 +4,13 @@ import assets from "../assets";
 import { Box, Button, Container, IconButton } from "@mui/material";
 import { Navigation, Social } from "../json/Menu";
 import { useState } from "react";
-import { ArrowDropDown, ArrowDropUp, Group, Search } from "@mui/icons-material";
+import { ArrowDropDown, ArrowDropUp, Group, Logout, Search } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
+  const { isLogin } = useSelector((state) => state.Auth);
+  console.log(isLogin);
   return (
     <>
       <header className="headerWrapper">
@@ -57,9 +60,15 @@ export default function Header() {
                   </IconButton>
                 </li>
                 <li className="abater">
-                  <Link to="/login">
-                    <Group />
-                  </Link>
+                  {isLogin ? (
+                    <button type="button">
+                      <Logout />
+                    </button>
+                  ) : (
+                    <Link to="/login">
+                      <Group />
+                    </Link>
+                  )}
                 </li>
               </ul>
             </Box>
@@ -68,7 +77,7 @@ export default function Header() {
       </header>
       <LatestPost>
         <Container>
-          <span>Latest Post:</span>{" "}
+          <span>Latest Post:</span>
           <p>
             <strong>10 Best Podcast Tips For Beginners 2024 </strong>
           </p>
