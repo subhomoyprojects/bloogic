@@ -63,7 +63,12 @@ export default function Header() {
                 </li>
                 <li className="abater">
                   {isLogin ? (
-                    <button type="button" onClick={dispatch(logout)}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        dispatch(logout());
+                      }}
+                    >
                       <Logout />
                     </button>
                   ) : (
