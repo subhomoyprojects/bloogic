@@ -8,8 +8,11 @@ import CommonCardTwoComponent from "../components/CommonCardTwoComponent";
 import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const { blogItems } = useSelector((state) => state.Blog);
+  console.log(blogItems);
   return (
     <>
       <section className="bannerWrapper">

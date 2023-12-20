@@ -11,7 +11,6 @@ import { logout } from "../redux/slice/AuthSlice";
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
   const { isLogin } = useSelector((state) => state.Auth);
-  console.log(isLogin);
   const dispatch = useDispatch();
   return (
     <>
