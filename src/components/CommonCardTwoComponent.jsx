@@ -4,19 +4,19 @@ import { CommonCardTwo } from "../style/CommonCardWrapperStyle";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
-export default function CommonCardTwoComponent({ className }) {
+export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category }) {
   return (
     <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">
-        <img src={assets.noImage} alt="" />
+        <img src={image ? `data:${imageType};base64,${image}` : assets.noImage} alt="" />
       </figure>
       <Box className="cardContentTwo">
-        <Typography variant="h4">Top 10 Free Android Games Download 2024</Typography>
-        <Typography variant="body1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, qui soluta eligendi veniam itaque veritatis. Sunt labore animi, quaerat cumque minus illo? Dicta adipisci explicabo eveniet qui voluptatibus illo quaerat!</Typography>
+        <Typography variant="h4">{title}</Typography>
+        <Box variant="body1" dangerouslySetInnerHTML={{ __html: description }}></Box>
         <Box className="dateCategory">
-          <strong>Health</strong>
+          <strong>{category}</strong>
           <Box className="dateView">
-            <span>September 3, 2023 | 4 min read</span>
+            <span>{date}</span>
             <ul>
               <li>
                 <IconButton aria-label="visibility">
@@ -37,4 +37,11 @@ export default function CommonCardTwoComponent({ className }) {
 }
 CommonCardTwoComponent.propTypes = {
   className: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  imageType: PropTypes.string,
+  date: PropTypes.string,
+  category: PropTypes.string,
+  comment_count: PropTypes.number,
 };

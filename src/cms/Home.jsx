@@ -8,11 +8,17 @@ import CommonCardTwoComponent from "../components/CommonCardTwoComponent";
 import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { BlogLists } from "../redux/slice/BlogSlice";
+import { useEffect } from "react";
 
 export default function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(BlogLists());
+  }, [dispatch]);
   const { blogItems } = useSelector((state) => state.Blog);
-  console.log(blogItems);
   return (
     <>
       <section className="bannerWrapper">
@@ -85,7 +91,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Latest articles" variant="h2" />
                 </HeaderHolder>
-                <CommonCardTwoComponent className="latestArticlesItem" />
+                {Array.isArray(blogItems) && blogItems.map((item, index) => <CommonCardTwoComponent key={index * 8} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)}
               </LatestArticlesHolder>
             </Grid>
             <Grid item sm={6} lg={4}>

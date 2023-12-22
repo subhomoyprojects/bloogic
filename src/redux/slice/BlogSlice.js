@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance, { status } from "../Helper";
 
-export const BlogLists = createAsyncThunk("/allBlog", async (formData) => {
-  let res = axiosInstance.get("/allBlog", formData);
+export const BlogLists = createAsyncThunk("/allBlog", async () => {
+  let res = await axiosInstance.get("/allBlog");
   let resData = res?.data;
   return resData;
 });
@@ -11,7 +11,7 @@ const BlogSlice = createSlice({
   name: "BlogSlice",
   initialState: {
     blogStatus: status.idle,
-    blogItems: [{}],
+    blogItems: [],
   },
   reducers: {},
   extraReducers: (builder) => {
