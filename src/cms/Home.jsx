@@ -11,6 +11,8 @@ import CommonList from "../components/CommonList";
 import { useDispatch, useSelector } from "react-redux";
 import { BlogLists } from "../redux/slice/BlogSlice";
 import { useEffect } from "react";
+import { status } from "../redux/Helper";
+import SkeletonLoader from "../common/SkeletonLoader";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(BlogLists());
   }, [dispatch]);
-  const { blogItems } = useSelector((state) => state.Blog);
+  const { blogItems, blogStatus } = useSelector((state) => state.Blog);
   return (
     <>
       <section className="bannerWrapper">
@@ -91,7 +93,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Latest articles" variant="h2" />
                 </HeaderHolder>
-                {Array.isArray(blogItems) && blogItems.map((item, index) => <CommonCardTwoComponent key={index * 8} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)}
+                {blogStatus === status.loading ? <SkeletonLoader /> : Array.isArray(blogItems) && blogItems.map((item, index) => <CommonCardTwoComponent key={index * 8} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)}
               </LatestArticlesHolder>
             </Grid>
             <Grid item sm={6} lg={4}>
