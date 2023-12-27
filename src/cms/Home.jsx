@@ -9,7 +9,7 @@ import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
 import { useDispatch, useSelector } from "react-redux";
-import { BlogLists, CategoryLists } from "../redux/slice/BlogSlice";
+import { BlogLists, CategoryLists, LatestPosts } from "../redux/slice/BlogSlice";
 import { useEffect } from "react";
 import { status } from "../redux/Helper";
 import SkeletonLoader from "../common/SkeletonLoader";
@@ -21,29 +21,25 @@ export default function Home() {
   useEffect(() => {
     dispatch(BlogLists());
     dispatch(CategoryLists());
+    dispatch(LatestPosts());
   }, [dispatch]);
-  const { blogItems, blogStatus, categoryStatus, categoryItems } = useSelector((state) => state.Blog);
+  const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts } = useSelector((state) => state.Blog);
   return (
     <>
       <section className="bannerWrapper">
         <Container>
           <BannerHolder>
             <Box className="bannerItem">
-              <Box>
-                <CommonCard />
-              </Box>
-              <Box>
-                <CommonCard />
-              </Box>
-              <Box>
-                <CommonCard />
-              </Box>
-              <Box>
-                <CommonCard />
-              </Box>
-              <Box>
-                <CommonCard />
-              </Box>
+              {latestStatus === status.loading ? (
+                <SkeletonLoader height={20} count={5} />
+              ) : (
+                Array.isArray(latestPosts) &&
+                latestPosts.map((items) => (
+                  <Box key={items._id}>
+                    <CommonCard catagories={items.category} image={items.photo} title={items.title} description={items.postText} />
+                  </Box>
+                ))
+              )}
             </Box>
           </BannerHolder>
         </Container>

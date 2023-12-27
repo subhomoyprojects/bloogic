@@ -13,6 +13,12 @@ export const CategoryLists = createAsyncThunk("/showallcategory", async () => {
   return resData;
 });
 
+export const LatestPosts = createAsyncThunk("/letest-post", async () => {
+  let res = await axiosInstance.get("/letest-post");
+  let resData = res?.data;
+  return resData;
+});
+
 const BlogSlice = createSlice({
   name: "BlogSlice",
   initialState: {
@@ -20,6 +26,8 @@ const BlogSlice = createSlice({
     blogItems: [],
     categoryStatus: status.idle,
     categoryItems: [],
+    latestStatus: status.idle,
+    latestPosts: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -46,6 +54,18 @@ const BlogSlice = createSlice({
       })
       .addCase(CategoryLists.rejected, (state) => {
         state.categoryStatus = status.error;
+      })
+
+      .addCase(LatestPosts.pending, (state) => {
+        state.latestStatus = status.loading;
+      })
+      .addCase(LatestPosts.fulfilled, (state, { payload }) => {
+        state.latestStatus = status.idle;
+        state.latestPosts = payload.data;
+        console.log(payload.data);
+      })
+      .addCase(LatestPosts.rejected, (state) => {
+        state.latestStatus = status.error;
       });
   },
 });

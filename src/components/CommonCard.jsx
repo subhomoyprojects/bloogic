@@ -15,7 +15,7 @@ export default function CommonCard({ image, catagories, title, description }) {
         </figure>
         <Box className="cardContent">
           <Typography variant="h3">{title}</Typography>
-          {description ? <Typography variant="body1">{description}</Typography> : null}
+          {description ? <Typography variant="body1" dangerouslySetInnerHTML={{ __html: description }}></Typography> : null}
           <Box className="commentSection">
             <p>
               <span>November 25, 2023</span> | <span>6 min read</span>
