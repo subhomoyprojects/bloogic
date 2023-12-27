@@ -22,6 +22,17 @@ export const LatestArticlesHolder = styled(Box)`
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .description {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 1.6rem;
+        border: none;
+      }
+    }
   }
   h2 {
     border-bottom: 1px solid ${ColorPalette.primaryColor};

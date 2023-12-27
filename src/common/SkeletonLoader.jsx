@@ -1,10 +1,17 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-export default function SkeletonLoader() {
+import "react-loading-skeleton/dist/skeleton.css";
+import PropTypes from "prop-types";
+export default function SkeletonLoader({ count, height, width }) {
   return (
-    <SkeletonTheme baseColor="#202020" highlightColor="#444">
+    <SkeletonTheme>
       <p>
-        <Skeleton count={3} />
+        <Skeleton height={height} width={width} containerClassName="skeleton" count={count} />
       </p>
     </SkeletonTheme>
   );
 }
+SkeletonLoader.propTypes = {
+  count: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number,
+};

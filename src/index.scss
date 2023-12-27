@@ -123,3 +123,10 @@ p {
   font-size: 1.1rem !important;
   color: #d32f2f;
 }
+.skeleton {
+  min-height: 4rem;
+  width: 100%;
+  .react-loading-skeleton {
+    margin-bottom: 2rem;
+  }
+}
