@@ -7,11 +7,19 @@ export const BlogLists = createAsyncThunk("/allBlog", async () => {
   return resData;
 });
 
+export const CategoryLists = createAsyncThunk("/showallcategory", async () => {
+  let res = await axiosInstance.get("/showallcategory");
+  let resData = res?.data;
+  return resData;
+});
+
 const BlogSlice = createSlice({
   name: "BlogSlice",
   initialState: {
     blogStatus: status.idle,
     blogItems: [],
+    categoryStatus: status.idle,
+    categoryItems: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -26,6 +34,18 @@ const BlogSlice = createSlice({
       })
       .addCase(BlogLists.rejected, (state) => {
         state.blogStatus = status.error;
+      })
+
+      .addCase(CategoryLists.pending, (state) => {
+        state.categoryStatus = status.loading;
+      })
+      .addCase(CategoryLists.fulfilled, (state, { payload }) => {
+        state.categoryStatus = status.idle;
+        state.categoryItems = payload.data;
+        console.log(payload.data);
+      })
+      .addCase(CategoryLists.rejected, (state) => {
+        state.categoryStatus = status.error;
       });
   },
 });

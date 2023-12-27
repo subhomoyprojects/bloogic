@@ -1,16 +1,16 @@
 import { Avatar, ListItemAvatar, ListItemText } from "@mui/material";
 import { ListItemStyle } from "../style/ListStyle";
-import { Category } from "@mui/icons-material";
+import PropTypes from "prop-types";
 
-export default function CommonList() {
+export default function CommonList({ value, icon }) {
   return (
     <ListItemStyle>
-      <ListItemAvatar>
-        <Avatar>
-          <Category />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary="Single-line item" />
+      {icon && <ListItemAvatar>{<Avatar>{icon}</Avatar>}</ListItemAvatar>}
+      <ListItemText primary={value} />
     </ListItemStyle>
   );
 }
+CommonList.propTypes = {
+  value: PropTypes.string,
+  icon: PropTypes.node,
+};

@@ -9,18 +9,20 @@ import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
 import { useDispatch, useSelector } from "react-redux";
-import { BlogLists } from "../redux/slice/BlogSlice";
+import { BlogLists, CategoryLists } from "../redux/slice/BlogSlice";
 import { useEffect } from "react";
 import { status } from "../redux/Helper";
 import SkeletonLoader from "../common/SkeletonLoader";
+import { Category } from "@mui/icons-material";
 
 export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(BlogLists());
+    dispatch(CategoryLists());
   }, [dispatch]);
-  const { blogItems, blogStatus } = useSelector((state) => state.Blog);
+  const { blogItems, blogStatus, categoryStatus, categoryItems } = useSelector((state) => state.Blog);
   return (
     <>
       <section className="bannerWrapper">
@@ -107,12 +109,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Categories" variant="h2" />
                 </HeaderHolder>
-                <List>
-                  <CommonList />
-                  <CommonList />
-                  <CommonList />
-                  <CommonList />
-                </List>
+                <List>{categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} value={items.category} icon={<Category />} />)}</List>
               </Categories>
             </Grid>
           </Grid>
