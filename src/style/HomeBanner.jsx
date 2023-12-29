@@ -86,5 +86,9 @@ export const BannerHolder = styled(Box)`
         text-shadow: 1px 2px 2px ${ColorPalette.shadowColor};
       }
     }
+    & > p {
+      grid-row: 1/3;
+      grid-column: 1/-1 !important;
+    }
   }
 `;
