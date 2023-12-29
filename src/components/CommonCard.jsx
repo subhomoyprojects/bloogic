@@ -3,7 +3,7 @@ import assets from "../assets";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { CustomCard } from "../style/CustomCardStyle";
-export default function CommonCard({ image, imageType, catagories, title, description }) {
+export default function CommonCard({ image, imageType, catagories, title, description, createDate }) {
   return (
     <>
       <CustomCard className="item commonCard">
@@ -18,7 +18,7 @@ export default function CommonCard({ image, imageType, catagories, title, descri
           {description ? <Box className="latestContent" dangerouslySetInnerHTML={{ __html: description.trim().split(" ").slice(0, 20).join(" ") }}></Box> : null}
           <Box className="commentSection">
             <p>
-              <span>November 25, 2023</span> | <span>6 min read</span>
+              <span>{createDate}</span> | <span>6 min read</span>
             </p>
             <ul>
               <li>
@@ -44,4 +44,5 @@ CommonCard.propTypes = {
   catagories: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
+  createDate: PropTypes.string,
 };
