@@ -10,4 +10,8 @@ export const status = Object.freeze({
   error: "ERROR",
 });
 
+export const blogImage = (imageData) => {
+  return `https://restapinodejs.onrender.com/api/blog/image/${imageData}`;
+};
+
 export default axiosInstance;

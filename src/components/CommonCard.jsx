@@ -3,19 +3,19 @@ import assets from "../assets";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { CustomCard } from "../style/CustomCardStyle";
-export default function CommonCard({ image, catagories, title, description }) {
+export default function CommonCard({ image, imageType, catagories, title, description }) {
   return (
     <>
       <CustomCard className="item commonCard">
         <figure>
-          <img src={image ? image : assets.noImage} alt="" />
+          <img src={image ? `data:${imageType};base64,${image}` : `${assets.noImage}`} alt="" />
           <Typography variant="h4" className="cardCatagories">
             {catagories ? catagories : "no catagories"}
           </Typography>
         </figure>
         <Box className="cardContent">
           <Typography variant="h3">{title}</Typography>
-          {description ? <Typography variant="body1" dangerouslySetInnerHTML={{ __html: description }}></Typography> : null}
+          {description ? <Box className="latestContent" dangerouslySetInnerHTML={{ __html: description.trim().split(" ").slice(0, 20).join(" ") }}></Box> : null}
           <Box className="commentSection">
             <p>
               <span>November 25, 2023</span> | <span>6 min read</span>
@@ -40,6 +40,7 @@ export default function CommonCard({ image, catagories, title, description }) {
 }
 CommonCard.propTypes = {
   image: PropTypes.string,
+  imageType: PropTypes.string,
   catagories: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,

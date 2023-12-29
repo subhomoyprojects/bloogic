@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <>
       <header className="headerWrapper">
-        <Container>
+        <Container maxWidth="xl">
           <HeaderHolder>
             <Link to="/" className="logo">
               <img src={assets.logo} alt="" />
@@ -82,7 +82,7 @@ export default function Header() {
         </Container>
       </header>
       <LatestPost>
-        <Container>
+        <Container maxWidth="xl">
           <span>Latest Post:</span>
           <p>
             <strong>10 Best Podcast Tips For Beginners 2024 </strong>

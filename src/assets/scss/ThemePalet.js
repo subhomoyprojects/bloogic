@@ -8,6 +8,7 @@ export const ColorPalette = {
   lightBlueBorder: "rgba(1,138,255,.3)",
   errorColor: "#d32f2f",
   shadowColor: "rgba(0, 0, 0, 0.1)",
+  textShadowColor: "rgba(0, 0, 0, 0.4)",
   offWhite: "#e9e9e9",
   lightSky: "rgba(1,138,255,.04)",
 };

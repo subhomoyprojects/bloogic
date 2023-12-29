@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
+import { ColorPalette } from "../assets/scss/ThemePalet";
 
 export const BannerHolder = styled(Box)`
   .bannerItem {
@@ -14,6 +15,9 @@ export const BannerHolder = styled(Box)`
           font-size: clamp(1.4rem, 1.125vw, 2rem);
         }
         .cardContent {
+          .latestContent {
+            display: block;
+          }
           h3 {
             font-size: clamp(2rem, 1.875vw, 3.5rem);
           }
@@ -52,8 +56,34 @@ export const BannerHolder = styled(Box)`
       }
     }
     & > * {
+      .latestContent {
+        display: none;
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-size: 1.6rem;
+          font-weight: 500;
+          color: ${ColorPalette.textColor};
+          display: none;
+        }
+      }
       .item {
         height: 100%;
+        display: flex;
+      }
+      h3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: clamp(1.6rem, 1.6vw, 2rem);
+        text-shadow: 1px 2px 2px ${ColorPalette.textShadowColor};
+      }
+      p {
+        text-shadow: 1px 2px 2px ${ColorPalette.shadowColor};
       }
     }
   }

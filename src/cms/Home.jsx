@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <section className="bannerWrapper">
-        <Container>
+        <Container maxWidth="xl">
           <BannerHolder>
             <Box className="bannerItem">
               {latestStatus === status.loading ? (
@@ -36,7 +36,7 @@ export default function Home() {
                 Array.isArray(latestPosts) &&
                 latestPosts.map((items) => (
                   <Box key={items._id}>
-                    <CommonCard catagories={items.category} image={items.photo} title={items.title} description={items.postText} />
+                    <CommonCard catagories={items.category} image={items.photo.data} imageType={items.photo.contentType} title={items.title} description={items.postText} />
                   </Box>
                 ))
               )}
@@ -45,7 +45,7 @@ export default function Home() {
         </Container>
       </section>
       <section className="mostViewWrapper">
-        <Container>
+        <Container maxWidth="xl">
           <CommonCardWrapper>
             <HeaderHolder>
               <CommonHeaderComponent title="Most viewed" variant="h2" />
@@ -65,7 +65,7 @@ export default function Home() {
         </Container>
       </section>
       <section className="trendingWrapper">
-        <Container>
+        <Container maxWidth="xl">
           <CommonCardWrapper>
             <HeaderHolder>
               <CommonHeaderComponent title="Trending posts" variant="h2" />
@@ -84,7 +84,7 @@ export default function Home() {
         </Container>
       </section>
       <section className="latestArticlesWRapper">
-        <Container>
+        <Container maxWidth="xl">
           <Grid container spacing={4}>
             <Grid item sm={6} lg={8}>
               <LatestArticlesHolder>
