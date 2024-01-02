@@ -14,4 +14,8 @@ export const blogImage = (imageData) => {
   return `https://restapinodejs.onrender.com/api/blog/image/${imageData}`;
 };
 
+export const categoryFetch = (categoryID) => {
+  return `https://restapinodejs.onrender.com/api/category/post/${categoryID}`;
+};
+
 export default axiosInstance;

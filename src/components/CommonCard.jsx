@@ -3,14 +3,25 @@ import assets from "../assets";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { CustomCard } from "../style/CustomCardStyle";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 export default function CommonCard({ image, imageType, catagories, title, description, createDate }) {
+  const { categoryItems } = useSelector((state) => state.Blog);
+  const [categoryName, setCategoryName] = useState("");
+
+  useEffect(() => {
+    const matchedCategory = categoryItems.find((category) => category._id === catagories);
+    if (matchedCategory) {
+      setCategoryName(matchedCategory.category);
+    }
+  }, [catagories, categoryItems]);
   return (
     <>
       <CustomCard className="item commonCard">
         <figure>
           <img src={image ? `data:${imageType};base64,${image}` : `${assets.noImage}`} alt="" />
           <Typography variant="h4" className="cardCatagories">
-            {catagories ? catagories : "no catagories"}
+            {categoryName}
           </Typography>
         </figure>
         <Box className="cardContent">

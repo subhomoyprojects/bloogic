@@ -64,7 +64,7 @@ export const CommonCardTwo = styled(Box)`
   figure {
     line-height: 0;
   }
-  .dateCategory {
+  .dataCategory {
     display: flex;
     flex-direction: column;
     margin-top: auto;

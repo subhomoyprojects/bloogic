@@ -13,7 +13,7 @@ export default function CommonCardTwoComponent({ className, title, description, 
       <Box className="cardContentTwo">
         <Typography variant="h4">{title}</Typography>
         <Box variant="body1" className="description" dangerouslySetInnerHTML={{ __html: description?.trim()?.split(" ")?.slice(0, 5)?.join(" ") }}></Box>
-        <Box className="dateCategory">
+        <Box className="dataCategory">
           <strong>{category}</strong>
           <Box className="dateView">
             <span>{date}</span>
