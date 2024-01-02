@@ -38,7 +38,6 @@ const BlogSlice = createSlice({
       .addCase(BlogLists.fulfilled, (state, { payload }) => {
         state.blogStatus = status.idle;
         state.blogItems = payload.data;
-        console.log(payload.data);
       })
       .addCase(BlogLists.rejected, (state) => {
         state.blogStatus = status.error;
@@ -50,7 +49,6 @@ const BlogSlice = createSlice({
       .addCase(CategoryLists.fulfilled, (state, { payload }) => {
         state.categoryStatus = status.idle;
         state.categoryItems = payload.data;
-        console.log(payload.data);
       })
       .addCase(CategoryLists.rejected, (state) => {
         state.categoryStatus = status.error;
@@ -62,7 +60,6 @@ const BlogSlice = createSlice({
       .addCase(LatestPosts.fulfilled, (state, { payload }) => {
         state.latestStatus = status.idle;
         state.latestPosts = payload.data;
-        console.log(payload.data);
       })
       .addCase(LatestPosts.rejected, (state) => {
         state.latestStatus = status.error;

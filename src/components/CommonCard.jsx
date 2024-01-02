@@ -5,9 +5,15 @@ import PropTypes from "prop-types";
 import { CustomCard } from "../style/CustomCardStyle";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-export default function CommonCard({ image, imageType, catagories, title, description, createDate }) {
+import { useNavigate } from "react-router-dom";
+export default function CommonCard({ id, image, imageType, catagories, title, description, createDate }) {
   const { categoryItems } = useSelector((state) => state.Blog);
   const [categoryName, setCategoryName] = useState("");
+  const navigate = useNavigate();
+
+  const navigateTo = () => {
+    navigate(`/blog/details/${id}`);
+  };
 
   useEffect(() => {
     const matchedCategory = categoryItems.find((category) => category._id === catagories);
@@ -33,12 +39,12 @@ export default function CommonCard({ image, imageType, catagories, title, descri
             </p>
             <ul>
               <li>
-                <IconButton aria-label="visibility">
+                <IconButton aria-label="visibility" onClick={navigateTo}>
                   <Visibility />
                 </IconButton>
               </li>
               <li>
-                <IconButton aria-label="visibility">
+                <IconButton aria-label="visibility" target="_blank" href="https://api.whatsapp.com/send?text=https://www.bloggic.com/10-best-foods-for-high-blood-pressure/">
                   <Textsms />
                 </IconButton>
               </li>
@@ -50,6 +56,7 @@ export default function CommonCard({ image, imageType, catagories, title, descri
   );
 }
 CommonCard.propTypes = {
+  id: PropTypes.string,
   image: PropTypes.string,
   imageType: PropTypes.string,
   catagories: PropTypes.string,

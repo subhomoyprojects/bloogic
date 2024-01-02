@@ -36,7 +36,7 @@ export default function Home() {
                 Array.isArray(latestPosts) &&
                 latestPosts.map((items) => (
                   <Box key={items._id}>
-                    <CommonCard createDate={items.createdAt} catagories={items.category} image={items.photo.data} imageType={items.photo.contentType} title={items.title} description={items.postText} />
+                    <CommonCard id={items._id} createDate={items.createdAt} catagories={items.category} image={items.photo.data} imageType={items.photo.contentType} title={items.title} description={items.postText} />
                   </Box>
                 ))
               )}

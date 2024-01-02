@@ -12,6 +12,7 @@ const Team = lazy(() => import("./cms/Team"));
 const Course = lazy(() => import("./cms/Course.jsx"));
 const Service = lazy(() => import("./cms/Service.jsx"));
 const Blog = lazy(() => import("../src/cms/Blog"));
+const BlogDetails = lazy(() => import("../src/cms/BlogDetails.jsx"));
 const Login = lazy(() => import("../src/auth/Login"));
 const Signup = lazy(() => import("../src/auth/Signup"));
 const Profile = lazy(() => import("../src/user/Profile"));
@@ -47,8 +48,12 @@ const PublicRouteNames = [
     Component: <Service />,
   },
   {
-    path: "/blog/details/:id",
+    path: "/blog",
     Component: <Blog />,
+  },
+  {
+    path: "/blog/details/:id",
+    Component: <BlogDetails />,
   },
   {
     path: "/login",
