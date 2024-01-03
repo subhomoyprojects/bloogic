@@ -82,7 +82,8 @@ export const CustomCard = styled(Box)`
         align-items: center;
         justify-content: flex-end;
         li {
-          button {
+          button,
+          a {
             color: ${ColorPalette.whiteColor};
             font-size: clamp(1.4rem, 1vw, 1.8rem);
             &:hover {

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export default function CommonCard({ id, image, imageType, catagories, title, description, createDate }) {
   const { categoryItems } = useSelector((state) => state.Blog);
-  const [categoryName, setCategoryName] = useState("");
+  const [categoryName, setCategoryName] = useState(null);
   const navigate = useNavigate();
 
   const navigateTo = () => {

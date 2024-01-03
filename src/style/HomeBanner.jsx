@@ -27,7 +27,8 @@ export const BannerHolder = styled(Box)`
           .commentSection {
             ul {
               li {
-                button {
+                button,
+                a {
                   svg {
                     width: 1.7em;
                     height: 1.7em;
