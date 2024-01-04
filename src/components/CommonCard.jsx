@@ -6,9 +6,12 @@ import { CustomCard } from "../style/CustomCardStyle";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { format, parseISO } from "date-fns";
+
 export default function CommonCard({ id, image, imageType, catagories, title, description, createDate }) {
   const { categoryItems } = useSelector((state) => state.Blog);
   const [categoryName, setCategoryName] = useState(null);
+  const [timeReceive, setTimeReceive] = useState("");
   const navigate = useNavigate();
 
   const navigateTo = () => {
@@ -20,7 +23,11 @@ export default function CommonCard({ id, image, imageType, catagories, title, de
     if (matchedCategory) {
       setCategoryName(matchedCategory.category);
     }
-  }, [catagories, categoryItems]);
+    if (createDate !== undefined && createDate !== "" && createDate !== null) {
+      const parsedDate = parseISO(createDate);
+      setTimeReceive(format(parsedDate, "MMMM dd, yyyy"));
+    }
+  }, [catagories, categoryItems, createDate, timeReceive]);
   return (
     <>
       <CustomCard className="item commonCard">
@@ -35,7 +42,7 @@ export default function CommonCard({ id, image, imageType, catagories, title, de
           {description ? <Box className="latestContent" dangerouslySetInnerHTML={{ __html: description.trim().split(" ").slice(0, 20).join(" ") }}></Box> : null}
           <Box className="commentSection">
             <p>
-              <span>{createDate}</span> | <span>6 min read</span>
+              <span>{timeReceive}</span> | <span>6 min read</span>
             </p>
             <ul>
               <li>
