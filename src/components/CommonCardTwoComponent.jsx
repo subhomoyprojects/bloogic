@@ -5,10 +5,11 @@ import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { format, parseISO } from "date-fns";
 
 export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category }) {
   const { categoryItems } = useSelector((state) => state.Blog);
-
+  const [timeReceive, setTimeReceive] = useState("");
   const [categoryName, setCategoryName] = useState("");
 
   useEffect(() => {
@@ -16,7 +17,11 @@ export default function CommonCardTwoComponent({ className, title, description, 
     if (manageItems) {
       setCategoryName(manageItems.category);
     }
-  }, [category, categoryItems]);
+    if (date !== undefined && date !== "" && date !== null) {
+      const parsedDate = parseISO(date);
+      setTimeReceive(format(parsedDate, "MMMM dd, yyyy"));
+    }
+  }, [category, categoryItems, date]);
 
   return (
     <CommonCardTwo className={className}>
@@ -29,7 +34,7 @@ export default function CommonCardTwoComponent({ className, title, description, 
         <Box className="dataCategory">
           <strong>{categoryName}</strong>
           <Box className="dateView">
-            <span>{date}</span>
+            <span>{timeReceive}</span>
             <ul>
               <li>
                 <IconButton aria-label="visibility">
