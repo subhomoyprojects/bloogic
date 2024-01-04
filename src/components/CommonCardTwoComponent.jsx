@@ -6,11 +6,18 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
-export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category }) {
+export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category, id }) {
   const { categoryItems } = useSelector((state) => state.Blog);
   const [timeReceive, setTimeReceive] = useState("");
   const [categoryName, setCategoryName] = useState("");
+
+  const navigate = useNavigate();
+
+  const navigateTo = () => {
+    navigate(`/blog/details/${id}`);
+  };
 
   useEffect(() => {
     const manageItems = categoryItems.find((item) => item._id === category);
@@ -21,7 +28,7 @@ export default function CommonCardTwoComponent({ className, title, description, 
       const parsedDate = parseISO(date);
       setTimeReceive(format(parsedDate, "MMMM dd, yyyy"));
     }
-  }, [category, categoryItems, date]);
+  }, [category, categoryItems, date, categoryName]);
 
   return (
     <CommonCardTwo className={className}>
@@ -37,7 +44,7 @@ export default function CommonCardTwoComponent({ className, title, description, 
             <span>{timeReceive}</span>
             <ul>
               <li>
-                <IconButton aria-label="visibility">
+                <IconButton aria-label="visibility" onClick={navigateTo}>
                   <Visibility />
                 </IconButton>
               </li>
@@ -62,4 +69,5 @@ CommonCardTwoComponent.propTypes = {
   date: PropTypes.string,
   category: PropTypes.string,
   comment_count: PropTypes.number,
+  id: PropTypes.string,
 };

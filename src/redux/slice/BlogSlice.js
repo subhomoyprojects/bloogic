@@ -28,8 +28,13 @@ const BlogSlice = createSlice({
     categoryItems: [],
     latestStatus: status.idle,
     latestPosts: [],
+    categoryValue: "",
   },
-  reducers: {},
+  reducers: {
+    getCategoryValue: (state, { payload }) => {
+      state.categoryValue = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(BlogLists.pending, (state) => {
@@ -66,5 +71,5 @@ const BlogSlice = createSlice({
       });
   },
 });
-
+export const { getCategoryValue } = BlogSlice.actions;
 export default BlogSlice.reducer;

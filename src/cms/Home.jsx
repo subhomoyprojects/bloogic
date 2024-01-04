@@ -91,7 +91,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Latest articles" variant="h2" />
                 </HeaderHolder>
-                {blogStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(blogItems) && blogItems.map((item, index) => <CommonCardTwoComponent key={index * 8} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)}
+                {blogStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(blogItems) && blogItems.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)}
               </LatestArticlesHolder>
             </Grid>
             <Grid item sm={6} lg={4}>
