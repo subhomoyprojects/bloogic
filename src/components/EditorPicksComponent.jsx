@@ -8,7 +8,7 @@ export default function EditorPicksComponent() {
     <>
       <EditorPicks>
         <HeaderHolder>
-          <CommonHeaderComponent title="Editor's picks" variant="h2" />
+          <CommonHeaderComponent title="Testimonials" variant="h2" />
         </HeaderHolder>
         <CommonCardTwoComponent className="editorPicks" />
       </EditorPicks>
