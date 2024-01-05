@@ -18,7 +18,7 @@ export const ListItemStyle = styled(ListItem)`
       height: 2rem;
     }
   }
-  .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+  .MuiListItemButton-gutters {
     padding: 0;
     background-color: transparent;
   }
