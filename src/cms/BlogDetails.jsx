@@ -1,22 +1,18 @@
-import { Container, Grid, List } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import { HeaderHolder } from "../style/CommonHeaderStyle";
 import CommonHeaderComponent from "../components/CommonHeaderComponent";
-import SkeletonLoader from "../common/SkeletonLoader";
 import CommonCardTwoComponent from "../components/CommonCardTwoComponent";
-import { Categories, EditorPicks } from "../style/LatestArticlesHolderStyle";
-import { Category } from "@mui/icons-material";
-import CommonList from "../components/CommonList";
+import { EditorPicks } from "../style/LatestArticlesHolderStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { BlogLists, CategoryLists } from "../redux/slice/BlogSlice";
-import { status } from "../redux/Helper";
 import BlogDetailsComponent from "../components/BlogDetailsComponent";
 import { useParams } from "react-router-dom";
 
 export default function BlogDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { categoryStatus, categoryItems, blogItems } = useSelector((state) => state.Blog);
+  const { blogItems } = useSelector((state) => state.Blog);
 
   useEffect(() => {
     dispatch(CategoryLists());
@@ -41,12 +37,6 @@ export default function BlogDetails() {
                 </HeaderHolder>
                 <CommonCardTwoComponent className="editorPicks" />
               </EditorPicks>
-              <Categories>
-                <HeaderHolder>
-                  <CommonHeaderComponent title="Categories" variant="h2" />
-                </HeaderHolder>
-                <List>{categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} value={items.category} icon={<Category />} />)}</List>
-              </Categories>
             </Grid>
           </Grid>
         </Container>
