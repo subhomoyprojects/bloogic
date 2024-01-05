@@ -58,7 +58,6 @@ export const AuthSlice = createSlice({
       })
       .addCase(LoginAuth.fulfilled, (state, { payload }) => {
         state.status = status.idle;
-        console.log(payload.status);
         if (payload.status === 200) {
           localStorage.setItem("token", payload.token);
           state.isLogin = true;

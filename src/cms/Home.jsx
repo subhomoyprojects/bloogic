@@ -1,4 +1,4 @@
-import { Box, Container, Grid, List } from "@mui/material";
+import { Alert, Box, Button, Container, Grid, List } from "@mui/material";
 import { BannerHolder } from "../style/HomeBanner";
 import CommonCard from "../components/CommonCard";
 import CommonHeaderComponent from "../components/CommonHeaderComponent";
@@ -9,21 +9,35 @@ import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
 import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
 import { useDispatch, useSelector } from "react-redux";
-import { BlogLists, CategoryLists, LatestPosts } from "../redux/slice/BlogSlice";
-import { useEffect } from "react";
+import { BlogLists, CategoryLists, LatestPosts, getCategoryValue } from "../redux/slice/BlogSlice";
+import { useEffect, useState } from "react";
 import { status } from "../redux/Helper";
 import SkeletonLoader from "../common/SkeletonLoader";
-import { Category } from "@mui/icons-material";
+import { Category, Delete } from "@mui/icons-material";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const [catListForFilter, setCatListForFilter] = useState("");
 
   useEffect(() => {
     dispatch(BlogLists());
     dispatch(CategoryLists());
     dispatch(LatestPosts());
   }, [dispatch]);
-  const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts } = useSelector((state) => state.Blog);
+  const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts, categoryValue } = useSelector((state) => state.Blog);
+
+  useEffect(() => {
+    if (categoryValue !== "") {
+      const matchedItems = blogItems.filter((item) => item.category === categoryValue);
+
+      if (matchedItems) {
+        setCatListForFilter(matchedItems);
+      } else {
+        console.log("No matching items found");
+      }
+    }
+  }, [categoryItems, categoryValue, blogItems]);
+  console.log(catListForFilter);
   return (
     <>
       <section className="bannerWrapper">
@@ -91,7 +105,15 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Latest articles" variant="h2" />
                 </HeaderHolder>
-                {blogStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(blogItems) && blogItems.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)}
+                {blogStatus === status.loading ? (
+                  <SkeletonLoader height={20} count={5} />
+                ) : catListForFilter === "" ? (
+                  Array.isArray(blogItems) && blogItems.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)
+                ) : catListForFilter.length > 0 ? (
+                  Array.isArray(catListForFilter) && catListForFilter.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)
+                ) : (
+                  <Alert severity="warning">{`You haven't any data`}</Alert>
+                )}
               </LatestArticlesHolder>
             </Grid>
             <Grid item sm={6} lg={4}>
@@ -105,7 +127,23 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Categories" variant="h2" />
                 </HeaderHolder>
-                <List>{categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} value={items.category} icon={<Category />} />)}</List>
+                <List>{categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} id={items._id} value={items.category} icon={<Category />} />)}</List>
+                {catListForFilter !== "" && (
+                  <Box className="btnHolder">
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        dispatch(getCategoryValue(""));
+                        setCatListForFilter("");
+                      }}
+                      className="error"
+                      color="error"
+                      startIcon={<Delete />}
+                    >
+                      Clear Filter
+                    </Button>
+                  </Box>
+                )}
               </Categories>
             </Grid>
           </Grid>

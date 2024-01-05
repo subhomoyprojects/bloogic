@@ -130,3 +130,29 @@ p {
     margin-bottom: 2rem;
   }
 }
+.btnHolder {
+  display: flex;
+  align-items: center;
+  padding-block: 2rem;
+  button,
+  a {
+    &.error {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+  }
+}
+.MuiAlert-root {
+  display: flex;
+  align-items: center;
+  .MuiAlert-icon {
+    font-size: 3rem;
+  }
+  .MuiAlert-message {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+}
