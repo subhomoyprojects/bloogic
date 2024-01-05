@@ -1,13 +1,10 @@
 import { Container, Grid } from "@mui/material";
-import { HeaderHolder } from "../style/CommonHeaderStyle";
-import CommonHeaderComponent from "../components/CommonHeaderComponent";
-import CommonCardTwoComponent from "../components/CommonCardTwoComponent";
-import { EditorPicks } from "../style/LatestArticlesHolderStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { BlogLists, CategoryLists } from "../redux/slice/BlogSlice";
 import BlogDetailsComponent from "../components/BlogDetailsComponent";
 import { useParams } from "react-router-dom";
+import EditorPicksComponent from "../components/EditorPicksComponent";
 
 export default function BlogDetails() {
   const dispatch = useDispatch();
@@ -31,12 +28,7 @@ export default function BlogDetails() {
               {Array.isArray(blogItems) && blogItems.map((item) => (item._id === id ? <BlogDetailsComponent key={item._id} title={item.title} description={item.postText} imageType={item.photo.contentType} image={item.photo.data} date={item.createdAt} /> : null))}
             </Grid>
             <Grid item sm={6} lg={4}>
-              <EditorPicks>
-                <HeaderHolder>
-                  <CommonHeaderComponent title="Editor's picks" variant="h2" />
-                </HeaderHolder>
-                <CommonCardTwoComponent className="editorPicks" />
-              </EditorPicks>
+              <EditorPicksComponent />
             </Grid>
           </Grid>
         </Container>

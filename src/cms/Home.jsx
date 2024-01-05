@@ -6,7 +6,7 @@ import { HeaderHolder } from "../style/CommonHeaderStyle";
 import { SliderHolder } from "../style/SliderHolderStyle";
 import CommonCardTwoComponent from "../components/CommonCardTwoComponent";
 import { CommonCardWrapper } from "../style/CommonCardWrapperStyle";
-import { Categories, EditorPicks, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
+import { Categories, LatestArticlesHolder } from "../style/LatestArticlesHolderStyle";
 import CommonList from "../components/CommonList";
 import { useDispatch, useSelector } from "react-redux";
 import { BlogLists, CategoryLists, LatestPosts, getCategoryValue } from "../redux/slice/BlogSlice";
@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { status } from "../redux/Helper";
 import SkeletonLoader from "../common/SkeletonLoader";
 import { Category, Delete } from "@mui/icons-material";
+import EditorPicksComponent from "../components/EditorPicksComponent";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -117,12 +118,7 @@ export default function Home() {
               </LatestArticlesHolder>
             </Grid>
             <Grid item sm={6} lg={4}>
-              <EditorPicks>
-                <HeaderHolder>
-                  <CommonHeaderComponent title="Editor's picks" variant="h2" />
-                </HeaderHolder>
-                <CommonCardTwoComponent className="editorPicks" />
-              </EditorPicks>
+              <EditorPicksComponent />
               <Categories>
                 <HeaderHolder>
                   <CommonHeaderComponent title="Categories" variant="h2" />
