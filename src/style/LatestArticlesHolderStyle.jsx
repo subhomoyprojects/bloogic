@@ -54,6 +54,9 @@ export const EditorPicks = styled(Box)`
       padding-top: 1.5rem;
     }
   }
+  .swiperContainer {
+    position: relative;
+  }
 `;
 export const Categories = styled(Box)`
   margin-top: 3rem;

@@ -21,7 +21,7 @@ const TestimonialsSlice = createSlice({
       })
       .addCase(TestimonialsItems.fulfilled, (state, { payload }) => {
         state.status = status.idle;
-        state.testimonialsItems = payload.data;
+        state.testimonialsItems = payload.testimonials;
       })
       .addCase(TestimonialsItems.rejected, (state) => {
         state.status = status.error;
