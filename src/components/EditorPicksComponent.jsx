@@ -24,11 +24,11 @@ export default function EditorPicksComponent() {
           <CommonHeaderComponent title="Testimonials" variant="h2" />
         </HeaderHolder>
         <Box className="swiperContainer">
-          <Swiper modules={[Navigation, A11y, Autoplay]} slidesPerView={1} navigation loop={true}>
+          <Swiper modules={[Navigation, A11y, Autoplay]} slidesPerView={1} navigation loop={true} onSlideChange={() => console.log("slide change")}>
             {Array.isArray(testimonialsItems) &&
               testimonialsItems.map((items) => (
                 <SwiperSlide key={items._id}>
-                  <TestimonialsCardComponent name={items.name} talk={items.talk} date={items.createdAt} position={items.position} className="editorPicks" />
+                  <TestimonialsCardComponent id={items._id} name={items.name} talk={items.talk} date={items.createdAt} position={items.position} className="editorPicks" />
                 </SwiperSlide>
               ))}
           </Swiper>

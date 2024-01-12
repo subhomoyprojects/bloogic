@@ -49,6 +49,14 @@ export const EditorPicks = styled(Box)`
     & > * {
       width: 100%;
     }
+    .imgHolderTwo {
+      img {
+        max-height: 40rem;
+        min-height: 40rem;
+        object-fit: cover;
+        object-position: top;
+      }
+    }
     .cardContentTwo {
       padding-left: 0;
       padding-top: 1.5rem;

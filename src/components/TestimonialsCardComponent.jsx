@@ -3,12 +3,13 @@ import assets from "../assets";
 import { CommonCardTwo } from "../style/CommonCardWrapperStyle";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
+import { testimonialsImage } from "../redux/Helper";
 
-export default function TestimonialsCardComponent({ className, name, talk, position, date, image }) {
+export default function TestimonialsCardComponent({ className, name, talk, position, date, id }) {
   return (
     <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">
-        <img src={image ? image : assets.noImage} alt="" />
+        <img src={id ? testimonialsImage(id) : assets.noImage} alt="" />
       </figure>
       <Box className="cardContentTwo">
         <Typography variant="h4">{name}</Typography>

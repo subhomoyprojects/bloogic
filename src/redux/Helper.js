@@ -18,4 +18,8 @@ export const categoryFetch = (categoryID) => {
   return `https://restapinodejs.onrender.com/api/category/post/${categoryID}`;
 };
 
+export const testimonialsImage = (id) => {
+  return `https://restapinodejs.onrender.com/api/testimonials/photo/${id}`;
+};
+
 export default axiosInstance;
