@@ -16,17 +16,17 @@ import SkeletonLoader from "../common/SkeletonLoader";
 import { Category, Delete } from "@mui/icons-material";
 import EditorPicksComponent from "../components/EditorPicksComponent";
 import TeamComponent from "../components/TeamComponent";
+import { TeamAsyncThunk } from "../redux/slice/TeamSlice";
 
 export default function Home() {
   const dispatch = useDispatch();
   const [catListForFilter, setCatListForFilter] = useState("");
 
   useEffect(() => {
-    dispatch(BlogLists());
-    dispatch(CategoryLists());
-    dispatch(LatestPosts());
+    dispatch(BlogLists(), CategoryLists(), LatestPosts(), TeamAsyncThunk());
   }, [dispatch]);
   const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts, categoryValue } = useSelector((state) => state.Blog);
+  const { teamItems, teamStatus } = useSelector((state) => state.Team);
 
   useEffect(() => {
     if (categoryValue !== "") {
@@ -88,9 +88,7 @@ export default function Home() {
             </HeaderHolder>
             <SliderHolder>
               <Box className="sliderItem">
-                <Box className="sliderItemHolder">
-                  <TeamComponent className="trendingCard" />
-                </Box>
+                <Box className="sliderItemHolder">{Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="trendingCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)}</Box>
               </Box>
             </SliderHolder>
           </CommonCardWrapper>

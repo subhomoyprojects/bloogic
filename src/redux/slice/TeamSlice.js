@@ -10,18 +10,18 @@ export const TeamAsyncThunk = createAsyncThunk("/team", async () => {
 const TeamSlice = createSlice({
   name: "TeamSlice",
   initialState: {
-    status: status.idle,
+    teamStatus: status.idle,
     teamItems: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(TeamAsyncThunk.pending, (state) => (state.status = status.loading))
+      .addCase(TeamAsyncThunk.pending, (state) => (state.teamStatus = status.loading))
       .addCase(TeamAsyncThunk.fulfilled, (state, { payload }) => {
-        state.status = status.idle;
+        state.teamStatus = status.idle;
         state.teamItems = payload.data;
       })
-      .addCase(TeamAsyncThunk.rejected, (state) => (state.status = status.error));
+      .addCase(TeamAsyncThunk.rejected, (state) => (state.teamStatus = status.error));
   },
 });
 
