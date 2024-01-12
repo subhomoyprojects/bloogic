@@ -15,6 +15,7 @@ import { status } from "../redux/Helper";
 import SkeletonLoader from "../common/SkeletonLoader";
 import { Category, Delete } from "@mui/icons-material";
 import EditorPicksComponent from "../components/EditorPicksComponent";
+import TeamComponent from "../components/TeamComponent";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -83,15 +84,12 @@ export default function Home() {
         <Container maxWidth="xl">
           <CommonCardWrapper>
             <HeaderHolder>
-              <CommonHeaderComponent title="Trending posts" variant="h2" />
+              <CommonHeaderComponent title="Our Team" variant="h2" />
             </HeaderHolder>
             <SliderHolder>
               <Box className="sliderItem">
                 <Box className="sliderItemHolder">
-                  <CommonCardTwoComponent className="trendingCard" />
-                  <CommonCardTwoComponent className="trendingCard" />
-                  <CommonCardTwoComponent className="trendingCard" />
-                  <CommonCardTwoComponent className="trendingCard" />
+                  <TeamComponent className="trendingCard" />
                 </Box>
               </Box>
             </SliderHolder>

@@ -22,4 +22,8 @@ export const testimonialsImage = (id) => {
   return `https://restapinodejs.onrender.com/api/testimonials/photo/${id}`;
 };
 
+export const teamImage = (id) => {
+  return `https://restapinodejs.onrender.com/api/team/photo/${id}`;
+};
+
 export default axiosInstance;
