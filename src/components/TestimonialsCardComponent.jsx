@@ -4,7 +4,7 @@ import { CommonCardTwo } from "../style/CommonCardWrapperStyle";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
-export default function TestimonialsCardComponent({ className, name, talk, position, date, image, id }) {
+export default function TestimonialsCardComponent({ className, name, talk, position, date, image }) {
   return (
     <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">

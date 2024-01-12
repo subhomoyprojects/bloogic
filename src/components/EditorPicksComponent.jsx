@@ -28,7 +28,7 @@ export default function EditorPicksComponent() {
             {Array.isArray(testimonialsItems) &&
               testimonialsItems.map((items) => (
                 <SwiperSlide key={items._id}>
-                  <TestimonialsCardComponent className="editorPicks" />
+                  <TestimonialsCardComponent name={items.name} talk={items.talk} date={items.createdAt} position={items.position} className="editorPicks" />
                 </SwiperSlide>
               ))}
           </Swiper>
