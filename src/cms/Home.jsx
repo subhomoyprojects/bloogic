@@ -26,7 +26,7 @@ export default function Home() {
     dispatch(BlogLists(), CategoryLists(), LatestPosts(), TeamAsyncThunk());
   }, [dispatch]);
   const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts, categoryValue } = useSelector((state) => state.Blog);
-  const { teamItems, teamStatus } = useSelector((state) => state.Team);
+  const { teamItems } = useSelector((state) => state.Team);
 
   useEffect(() => {
     if (categoryValue !== "") {
