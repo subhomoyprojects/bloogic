@@ -23,7 +23,10 @@ export default function Home() {
   const [catListForFilter, setCatListForFilter] = useState("");
 
   useEffect(() => {
-    dispatch(BlogLists(), CategoryLists(), LatestPosts(), TeamAsyncThunk());
+    dispatch(BlogLists());
+    dispatch(CategoryLists());
+    dispatch(LatestPosts());
+    dispatch(TeamAsyncThunk());
   }, [dispatch]);
   const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts, categoryValue } = useSelector((state) => state.Blog);
   const { teamItems } = useSelector((state) => state.Team);
