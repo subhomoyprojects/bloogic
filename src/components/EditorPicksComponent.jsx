@@ -9,13 +9,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { TestimonialsItems } from "../redux/slice/TestimonialsSlice";
 import TestimonialsCardComponent from "./TestimonialsCardComponent";
+import { status } from "../redux/Helper";
+import SkeletonLoader from "../common/SkeletonLoader";
 
 export default function EditorPicksComponent() {
   const dispatch = useDispatch();
-  const { testimonialsItems } = useSelector((state) => state.Testimonials);
   useEffect(() => {
     dispatch(TestimonialsItems());
   }, [dispatch]);
+  const { testimonialsItems, testimonialsStatus } = useSelector((state) => state.Testimonials);
 
   return (
     <>
@@ -24,14 +26,18 @@ export default function EditorPicksComponent() {
           <CommonHeaderComponent title="Testimonials" variant="h2" />
         </HeaderHolder>
         <Box className="swiperContainer">
-          <Swiper modules={[Navigation, A11y, Autoplay]} slidesPerView={1} navigation loop={true} onSlideChange={() => console.log("slide change")}>
-            {Array.isArray(testimonialsItems) &&
-              testimonialsItems.map((items) => (
-                <SwiperSlide key={items._id}>
-                  <TestimonialsCardComponent id={items._id} name={items.name} talk={items.talk} date={items.createdAt} position={items.position} className="editorPicks" />
-                </SwiperSlide>
-              ))}
-          </Swiper>
+          {testimonialsStatus.status === status.loading ? (
+            <SkeletonLoader height={20} count={5} />
+          ) : (
+            <Swiper modules={[Navigation, A11y, Autoplay]} slidesPerView={1} navigation loop={true}>
+              {Array.isArray(testimonialsItems) &&
+                testimonialsItems.map((items) => (
+                  <SwiperSlide key={items._id}>
+                    <TestimonialsCardComponent id={items._id} name={items.name} talk={items.talk} date={items.createdAt} position={items.position} className="editorPicks" />
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+          )}
         </Box>
       </EditorPicks>
     </>

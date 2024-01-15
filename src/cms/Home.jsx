@@ -29,7 +29,7 @@ export default function Home() {
     dispatch(TeamAsyncThunk());
   }, [dispatch]);
   const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts, categoryValue } = useSelector((state) => state.Blog);
-  const { teamItems } = useSelector((state) => state.Team);
+  const { teamItems, teamStatus } = useSelector((state) => state.Team);
 
   useEffect(() => {
     if (categoryValue !== "") {
@@ -91,7 +91,7 @@ export default function Home() {
             </HeaderHolder>
             <SliderHolder>
               <Box className="sliderItem">
-                <Box className="sliderItemHolder">{Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="trendingCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)}</Box>
+                <Box className="sliderItemHolder">{teamStatus === status.loading ? <SkeletonLoader count={5} height={20} /> : Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="teamCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)}</Box>
               </Box>
             </SliderHolder>
           </CommonCardWrapper>

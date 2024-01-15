@@ -29,6 +29,48 @@ export const CommonCardWrapper = styled(Box)`
 
 export const CommonCardTwo = styled(Box)`
   display: flex;
+  &.editorPicks {
+    padding: 1px;
+    & > * {
+      &.imgHolderTwo {
+        width: 100%;
+        line-height: 0;
+        border-radius: 1.5rem 1.5rem 0 0;
+        overflow: hidden;
+      }
+      &.cardContentTwo {
+        padding: 2rem;
+        width: 100%;
+        border-radius: 0 0 1.5rem 1.5rem;
+        overflow: hidden;
+        border: 1px solid ${ColorPalette.lightBlueBorder};
+      }
+    }
+  }
+  &.teamCard {
+    border: 1px solid ${ColorPalette.lightBlueBorder};
+    border-radius: 1.5rem;
+    flex-wrap: wrap;
+    overflow: hidden;
+    transition: all 0.3s;
+    width: calc((100% / 4) - (2rem - (2rem / 4)));
+    & > * {
+      &.imgHolderTwo {
+        width: 100%;
+        line-height: 0;
+        overflow: hidden;
+      }
+      &.cardContentTwo {
+        padding: 2rem;
+        width: 100%;
+        background-color: ${ColorPalette.lightSky};
+      }
+    }
+    &:hover {
+      box-shadow: 0 0 1rem ${ColorPalette.shadowColor};
+      transform: translateY(-1rem);
+    }
+  }
   & > * {
     flex: 0 0 auto;
     &.imgHolderTwo {

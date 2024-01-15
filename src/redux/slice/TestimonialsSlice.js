@@ -10,21 +10,21 @@ export const TestimonialsItems = createAsyncThunk("/testimonial", async () => {
 const TestimonialsSlice = createSlice({
   name: "TestimonialsSlice",
   initialState: {
-    status: status.idle,
+    testimonialsStatus: status.idle,
     testimonialsItems: [],
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(TestimonialsItems.pending, (state) => {
-        state.status = status.loading;
+        state.testimonialsStatus = status.loading;
       })
       .addCase(TestimonialsItems.fulfilled, (state, { payload }) => {
-        state.status = status.idle;
+        state.testimonialsStatus = status.idle;
         state.testimonialsItems = payload.testimonials;
       })
       .addCase(TestimonialsItems.rejected, (state) => {
-        state.status = status.error;
+        state.testimonialsStatus = status.error;
       });
   },
 });
