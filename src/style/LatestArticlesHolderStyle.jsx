@@ -3,6 +3,8 @@ import { Box } from "@mui/material";
 import { ColorPalette } from "../assets/scss/ThemePalet";
 
 export const LatestArticlesHolder = styled(Box)`
+  position: sticky;
+  top: 0;
   .latestArticlesItem {
     background-color: ${ColorPalette.lightSky};
     box-shadow: 2px 2px 5px ${ColorPalette.shadowColor};
@@ -58,8 +60,7 @@ export const EditorPicks = styled(Box)`
       }
     }
     .cardContentTwo {
-      padding-left: 0;
-      padding-top: 1.5rem;
+      padding: 1.5rem;
     }
   }
   .swiperContainer {
