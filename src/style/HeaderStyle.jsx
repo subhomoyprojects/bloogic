@@ -26,29 +26,31 @@ export const HeaderHolder = styled(Box)`
         justify-content: center;
         a,
         button {
-          display: inline-flex;
-          width: 4.4rem;
-          height: 4.4rem;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid ${ColorPalette.primaryColor};
-          border-radius: 100%;
-          color: ${ColorPalette.primaryColor};
-          font-size: 2.2rem;
-          &:hover {
-            background-color: ${ColorPalette.primaryColor};
-            img {
-              filter: brightness(0) invert(1);
+          &:not(.MuiIconButton-edgeEnd) {
+            display: inline-flex;
+            width: 4.4rem;
+            height: 4.4rem;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid ${ColorPalette.primaryColor};
+            border-radius: 100%;
+            color: ${ColorPalette.primaryColor};
+            font-size: 2.2rem;
+            &:hover {
+              background-color: ${ColorPalette.primaryColor};
+              img {
+                filter: brightness(0) invert(1);
+              }
             }
-          }
-          img,
-          svg {
-            max-width: 4rem;
-            transition: all 0.3s;
-          }
-          svg {
-            width: 3rem;
-            height: 3rem;
+            img,
+            svg {
+              max-width: 4rem;
+              transition: all 0.3s;
+            }
+            svg {
+              width: 3rem;
+              height: 3rem;
+            }
           }
         }
       }
@@ -69,6 +71,24 @@ export const HeaderHolder = styled(Box)`
                 color: ${ColorPalette.primaryColor};
               }
             }
+          }
+        }
+        .searchFieldHolder {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: ${ColorPalette.whiteColor};
+          padding: 2rem;
+          border-radius: 1.5rem;
+          box-shadow: 0 0 1rem ${ColorPalette.shadowColor};
+          transition: all 0.3s;
+          transform-origin: bottom;
+          & > * {
+            width: 100%;
+          }
+          &:not(.active) {
+            transform: translateY(-100%) scaleY(0);
           }
         }
       }

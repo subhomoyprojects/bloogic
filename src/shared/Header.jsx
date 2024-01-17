@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import { HeaderHolder, LatestPost } from "../style/HeaderStyle";
 import assets from "../assets";
-import { Box, Button, Container, IconButton } from "@mui/material";
+import { Box, Button, Container, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material";
 import { Navigation, Social } from "../json/Menu";
 import { useState } from "react";
 import { ArrowDropDown, ArrowDropUp, Group, Logout, Search } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slice/AuthSlice";
+import { CustomInputHolder } from "../style/CustomInputStyle";
 
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
+  const [viewSearch, setViewSearch] = useState(false);
   const { isLogin } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
   return (
@@ -56,9 +58,25 @@ export default function Header() {
               </ul>
               <ul className="searchAbater">
                 <li>
-                  <IconButton aria-label="search">
+                  <IconButton aria-label="search" onClick={() => setViewSearch((value) => !value)}>
                     <Search />
                   </IconButton>
+                  <Box className={`searchFieldHolder ${viewSearch ? "active" : ""}`}>
+                    <CustomInputHolder variant="outlined">
+                      <InputLabel>Search</InputLabel>
+                      <OutlinedInput
+                        type="search"
+                        label="Search"
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton aria-label="toggle password visibility" edge="end">
+                              <Search />
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                    </CustomInputHolder>
+                  </Box>
                 </li>
                 <li className="abater">
                   {isLogin ? (
