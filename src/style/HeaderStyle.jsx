@@ -75,6 +75,7 @@ export const HeaderHolder = styled(Box)`
         }
         .searchFieldHolder {
           position: absolute;
+          z-index: 99;
           top: 100%;
           left: 0;
           right: 0;

@@ -8,12 +8,33 @@ import { ArrowDropDown, ArrowDropUp, Group, Logout, Search } from "@mui/icons-ma
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slice/AuthSlice";
 import { CustomInputHolder } from "../style/CustomInputStyle";
+import { debounce } from "lodash";
+import CommonCardTwoComponent from "../components/CommonCardTwoComponent";
 
 export default function Header() {
   const [subMenu, setSubMenu] = useState(false);
   const [viewSearch, setViewSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOutput, setSearchOutput] = useState([]);
+
   const { isLogin } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
+
+  const searchItemFunction = async (value) => {
+    try {
+      let url = `https://restapinodejs.onrender.com/api/search/${value}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setSearchOutput(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const debouncedSearchItemFunction = debounce(searchItemFunction, 1000);
+
+  console.log(searchOutput);
+
   return (
     <>
       <header className="headerWrapper">
@@ -67,15 +88,19 @@ export default function Header() {
                       <OutlinedInput
                         type="search"
                         label="Search"
+                        value={searchQuery}
+                        onChange={(e) => {
+                          setSearchQuery(e.target.value);
+                          debouncedSearchItemFunction(e.target.value);
+                        }}
                         endAdornment={
                           <InputAdornment position="end">
-                            <IconButton aria-label="toggle password visibility" edge="end">
-                              <Search />
-                            </IconButton>
+                            <Search />
                           </InputAdornment>
                         }
                       />
                     </CustomInputHolder>
+                    <Box className="searchResultShow">{Array.isArray(searchOutput) && searchOutput.map((item) => <CommonCardTwoComponent key={item._id} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data.data} imageType={item.photo.contentType} date={item.createdAt} dataType={item.photo.data.type} />)}</Box>
                   </Box>
                 </li>
                 <li className="abater">

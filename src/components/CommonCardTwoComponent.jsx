@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category, id }) {
+export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category, id, dataType }) {
   const { categoryItems } = useSelector((state) => state.Blog);
   const [timeReceive, setTimeReceive] = useState("");
   const [categoryName, setCategoryName] = useState("");
@@ -33,7 +33,7 @@ export default function CommonCardTwoComponent({ className, title, description, 
   return (
     <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">
-        <img src={image ? `data:${imageType};base64,${image}` : assets.noImage} alt="" />
+        <img src={image ? `data:${imageType};base64,${image}` : dataType === "Buffer" ? `data:${imageType};base64,${dataType}` : assets.noImage} alt="" />
       </figure>
       <Box className="cardContentTwo">
         <Typography variant="h4">{title}</Typography>
@@ -70,4 +70,5 @@ CommonCardTwoComponent.propTypes = {
   category: PropTypes.string,
   comment_count: PropTypes.number,
   id: PropTypes.string,
+  dataType: PropTypes.node,
 };
