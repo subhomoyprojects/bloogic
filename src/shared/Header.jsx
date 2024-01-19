@@ -100,7 +100,7 @@ export default function Header() {
                         }
                       />
                     </CustomInputHolder>
-                    <Box className="searchResultShow">{Array.isArray(searchOutput) && searchOutput.map((item) => <CommonCardTwoComponent key={item._id} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data.data} imageType={item.photo.contentType} date={item.createdAt} dataType={item.photo.data.type} />)}</Box>
+                    <Box className="searchResultShow">{Array.isArray(searchOutput) && searchOutput.map((item) => <CommonCardTwoComponent key={item._id} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data.data} imageType={item.photo.contentType} date={item.createdAt} dataType={item.photo.data.type} wholeItem={item} />)}</Box>
                   </Box>
                 </li>
                 <li className="abater">

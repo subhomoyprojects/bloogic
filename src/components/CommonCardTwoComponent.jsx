@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category, id, dataType }) {
+export default function CommonCardTwoComponent({ className, title, description, image, imageType, date, category, id, dataType, wholeItem }) {
   const { categoryItems } = useSelector((state) => state.Blog);
   const [timeReceive, setTimeReceive] = useState("");
   const [categoryName, setCategoryName] = useState("");
@@ -29,6 +29,8 @@ export default function CommonCardTwoComponent({ className, title, description, 
       setTimeReceive(format(parsedDate, "MMMM dd, yyyy"));
     }
   }, [category, categoryItems, date, categoryName]);
+
+  console.log("wholeItem", wholeItem);
 
   return (
     <CommonCardTwo className={className}>
@@ -71,4 +73,5 @@ CommonCardTwoComponent.propTypes = {
   comment_count: PropTypes.number,
   id: PropTypes.string,
   dataType: PropTypes.node,
+  wholeItem: PropTypes.node,
 };
