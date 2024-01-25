@@ -26,7 +26,7 @@ export default function EditorPicksComponent() {
           <CommonHeaderComponent title="Testimonials" variant="h2" />
         </HeaderHolder>
         <Box className="swiperContainer">
-          {testimonialsStatus.status === status.loading ? (
+          {testimonialsStatus === status.loading ? (
             <SkeletonLoader height={20} count={5} />
           ) : (
             <Swiper modules={[Navigation, A11y, Autoplay]} slidesPerView={1} navigation loop={true}>
