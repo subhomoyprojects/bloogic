@@ -67,7 +67,7 @@ export default function Home() {
         <Container maxWidth="xl">
           <CommonCardWrapper>
             <HeaderHolder>
-              <CommonHeaderComponent title="Most viewed" variant="h2" />
+              <CommonHeaderComponent title="You can learn" variant="h2" />
             </HeaderHolder>
             <SliderHolder>
               <Box className="sliderItem">
