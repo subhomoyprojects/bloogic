@@ -1,4 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axiosInstance, { status } from "../Helper";
+
+export const CourseAsyncThunk = createAsyncThunk("/course", async () => {
+  let res = await axiosInstance.get("/course");
+  let resData = res?.data;
+  return resData;
+});
 
 const CourseSlice = createSlice({
   name: "CourseSlice",
@@ -8,7 +15,17 @@ const CourseSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase();
+    builder
+      .addCase(CourseAsyncThunk.pending, (state) => {
+        state.courseStatus = status.loading;
+      })
+      .addCase(CourseAsyncThunk.fulfilled, (state, { payload }) => {
+        state.courseStatus = status.idle;
+        state.courseItems = payload.Courses;
+      })
+      .addCase(CourseAsyncThunk.rejected, (state) => {
+        state.courseStatus = status.error;
+      });
   },
 });
 
