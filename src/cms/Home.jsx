@@ -18,6 +18,9 @@ import EditorPicksComponent from "../components/EditorPicksComponent";
 import TeamComponent from "../components/TeamComponent";
 import { TeamAsyncThunk } from "../redux/slice/TeamSlice";
 import { CourseAsyncThunk } from "../redux/slice/CourseSlice";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/bundle";
+import { Navigation, Autoplay } from "swiper/modules";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -75,15 +78,30 @@ export default function Home() {
               <CommonHeaderComponent title="You can learn" variant="h2" />
             </HeaderHolder>
             <SliderHolder>
-              <Box className="sliderItem">
-                <Box className="sliderItemHolder">
-                  <CommonCard />
-                  <Box className="sliderRight">
-                    <CommonCardTwoComponent className="mostView" />
-                    <CommonCardTwoComponent className="mostView" />
+              <Swiper slidesPerView={1} modules={[Navigation, Autoplay]} navigation autoplay={{ autoplay: true }} loop>
+                <SwiperSlide>
+                  <Box className="sliderItem">
+                    <Box className="sliderItemHolder">
+                      <CommonCard />
+                      <Box className="sliderRight">
+                        <CommonCardTwoComponent className="mostView" />
+                        <CommonCardTwoComponent className="mostView" />
+                      </Box>
+                    </Box>
                   </Box>
-                </Box>
-              </Box>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <Box className="sliderItem">
+                    <Box className="sliderItemHolder">
+                      <CommonCard />
+                      <Box className="sliderRight">
+                        <CommonCardTwoComponent className="mostView" />
+                        <CommonCardTwoComponent className="mostView" />
+                      </Box>
+                    </Box>
+                  </Box>
+                </SwiperSlide>
+              </Swiper>
             </SliderHolder>
           </CommonCardWrapper>
         </Container>
@@ -96,13 +114,7 @@ export default function Home() {
             </HeaderHolder>
             <SliderHolder>
               <Box className="sliderItem">
-                <Box className="sliderItemHolder">
-                  {teamStatus === status.loading ? (
-                    <SkeletonLoader count={5} height={20} />
-                  ) : (
-                    Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="teamCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)
-                  )}
-                </Box>
+                <Box className="sliderItemHolder">{teamStatus === status.loading ? <SkeletonLoader count={5} height={20} /> : Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="teamCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)}</Box>
               </Box>
             </SliderHolder>
           </CommonCardWrapper>
@@ -119,35 +131,9 @@ export default function Home() {
                 {blogStatus === status.loading ? (
                   <SkeletonLoader height={20} count={5} />
                 ) : catListForFilter === "" ? (
-                  Array.isArray(blogItems) &&
-                  blogItems.map((item) => (
-                    <CommonCardTwoComponent
-                      key={item._id + Date.now()}
-                      id={item._id}
-                      className="latestArticlesItem"
-                      title={item.title}
-                      description={item.postText}
-                      category={item.category}
-                      image={item.photo.data}
-                      imageType={item.contentType}
-                      date={item.createdAt}
-                    />
-                  ))
+                  Array.isArray(blogItems) && blogItems.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)
                 ) : catListForFilter.length > 0 ? (
-                  Array.isArray(catListForFilter) &&
-                  catListForFilter.map((item) => (
-                    <CommonCardTwoComponent
-                      key={item._id + Date.now()}
-                      id={item._id}
-                      className="latestArticlesItem"
-                      title={item.title}
-                      description={item.postText}
-                      category={item.category}
-                      image={item.photo.data}
-                      imageType={item.contentType}
-                      date={item.createdAt}
-                    />
-                  ))
+                  Array.isArray(catListForFilter) && catListForFilter.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)
                 ) : (
                   <Alert severity="warning">{`You haven't any data`}</Alert>
                 )}
@@ -159,9 +145,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Categories" variant="h2" />
                 </HeaderHolder>
-                <List>
-                  {categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} id={items._id} value={items.category} icon={<Category />} />)}
-                </List>
+                <List>{categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} id={items._id} value={items.category} icon={<Category />} />)}</List>
                 {catListForFilter !== "" && (
                   <Box className="btnHolder">
                     <Button
