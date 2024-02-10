@@ -38,7 +38,6 @@ export default function Home() {
   const { teamItems, teamStatus } = useSelector((state) => state.Team);
 
   const { courseItems } = useSelector((state) => state.Course);
-  console.log("Course", courseItems);
 
   useEffect(() => {
     if (categoryValue !== "") {
@@ -80,16 +79,21 @@ export default function Home() {
             </HeaderHolder>
             <SliderHolder>
               <Swiper slidesPerView={1} modules={[Navigation, Autoplay]} navigation autoplay={{ autoplay: true }} loop>
-                <SwiperSlide>
-                  <Box className="sliderItem">
-                    <Box className="sliderItemHolder">
-                      <CommonCard />
-                      <Box className="sliderRight">
-                        <CourseComponent className="mostView" />
-                      </Box>
-                    </Box>
-                  </Box>
-                </SwiperSlide>
+                {Array.isArray(courseItems) &&
+                  courseItems.map((items) => {
+                    return (
+                      <SwiperSlide key={items._id}>
+                        <Box className="sliderItem">
+                          <Box className="sliderItemHolder">
+                            <CommonCard />
+                            <Box className="sliderRight">
+                              <CourseComponent className="mostView" />
+                            </Box>
+                          </Box>
+                        </Box>
+                      </SwiperSlide>
+                    );
+                  })}
               </Swiper>
             </SliderHolder>
           </CommonCardWrapper>
