@@ -26,4 +26,8 @@ export const teamImage = (id) => {
   return `https://restapinodejs.onrender.com/api/team/photo/${id}`;
 };
 
+export const courseImage = (id) => {
+  return `https://restapinodejs.onrender.com/api/course/photo/${id}`;
+};
+
 export default axiosInstance;

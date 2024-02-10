@@ -71,6 +71,21 @@ export const CommonCardTwo = styled(Box)`
       transform: translateY(-1rem);
     }
   }
+  &.mostView {
+    .imgHolderTwo {
+      border: 1px solid ${ColorPalette.inputBorderColor};
+      background-color: ${ColorPalette.offWhite};
+      box-shadow: 0.4rem 0.4rem 0.1rem ${ColorPalette.shadowColor};
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+    .cardContentTwo {
+      .description {
+        font-weight: 600;
+        color: ${ColorPalette.blackColor};
+      }
+    }
+  }
   & > * {
     flex: 0 0 auto;
     &.imgHolderTwo {
