@@ -26,6 +26,7 @@ import CourseComponent from "../components/CourseComponent";
 export default function Home() {
   const dispatch = useDispatch();
   const [catListForFilter, setCatListForFilter] = useState("");
+  const [courseItemsArray, setCourseItemsArray] = useState([]);
 
   useEffect(() => {
     dispatch(BlogLists());
@@ -49,8 +50,16 @@ export default function Home() {
         console.log("No matching items found");
       }
     }
-  }, [categoryItems, categoryValue, blogItems]);
-  console.log(catListForFilter);
+    setCourseItemsArray([]);
+    for (let i = 0; i < courseItems.length; i += 3) {
+      // Extract a subarray of three items
+      const subarray = courseItems.slice(i, i + 3);
+
+      // Update 'courseItemsArray' with the subarray
+      setCourseItemsArray((prevItems) => [...prevItems, subarray]);
+    }
+  }, [categoryItems, categoryValue, blogItems, courseItems]);
+  console.log("courseItemsArray", courseItemsArray);
   return (
     <>
       <section className="bannerWrapper">
@@ -79,21 +88,23 @@ export default function Home() {
             </HeaderHolder>
             <SliderHolder>
               <Swiper slidesPerView={1} modules={[Navigation, Autoplay]} navigation autoplay={{ autoplay: true }} loop>
-                {Array.isArray(courseItems) &&
-                  courseItems.map((items) => {
-                    return (
-                      <SwiperSlide key={items._id}>
-                        <Box className="sliderItem">
-                          <Box className="sliderItemHolder">
-                            <CommonCard />
-                            <Box className="sliderRight">
-                              <CourseComponent className="mostView" />
+                {Array.isArray(courseItemsArray) &&
+                  courseItemsArray.map((items) =>
+                    items.map((subItem) => {
+                      return (
+                        <SwiperSlide key={subItem._id}>
+                          <Box className="sliderItem">
+                            <Box className="sliderItemHolder">
+                              <CommonCard />
+                              <Box className="sliderRight">
+                                <CourseComponent className="mostView" />
+                              </Box>
                             </Box>
                           </Box>
-                        </Box>
-                      </SwiperSlide>
-                    );
-                  })}
+                        </SwiperSlide>
+                      );
+                    })
+                  )}
               </Swiper>
             </SliderHolder>
           </CommonCardWrapper>
@@ -107,13 +118,7 @@ export default function Home() {
             </HeaderHolder>
             <SliderHolder>
               <Box className="sliderItem">
-                <Box className="sliderItemHolder">
-                  {teamStatus === status.loading ? (
-                    <SkeletonLoader count={5} height={20} />
-                  ) : (
-                    Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="teamCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)
-                  )}
-                </Box>
+                <Box className="sliderItemHolder">{teamStatus === status.loading ? <SkeletonLoader count={5} height={20} /> : Array.isArray(teamItems) && teamItems.map((items) => <TeamComponent key={items._id} className="teamCard" name={items.name} id={items._id} possession={items.possession} date={items.createdAt} />)}</Box>
               </Box>
             </SliderHolder>
           </CommonCardWrapper>
@@ -130,35 +135,9 @@ export default function Home() {
                 {blogStatus === status.loading ? (
                   <SkeletonLoader height={20} count={5} />
                 ) : catListForFilter === "" ? (
-                  Array.isArray(blogItems) &&
-                  blogItems.map((item) => (
-                    <CommonCardTwoComponent
-                      key={item._id + Date.now()}
-                      id={item._id}
-                      className="latestArticlesItem"
-                      title={item.title}
-                      description={item.postText}
-                      category={item.category}
-                      image={item.photo.data}
-                      imageType={item.contentType}
-                      date={item.createdAt}
-                    />
-                  ))
+                  Array.isArray(blogItems) && blogItems.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)
                 ) : catListForFilter.length > 0 ? (
-                  Array.isArray(catListForFilter) &&
-                  catListForFilter.map((item) => (
-                    <CommonCardTwoComponent
-                      key={item._id + Date.now()}
-                      id={item._id}
-                      className="latestArticlesItem"
-                      title={item.title}
-                      description={item.postText}
-                      category={item.category}
-                      image={item.photo.data}
-                      imageType={item.contentType}
-                      date={item.createdAt}
-                    />
-                  ))
+                  Array.isArray(catListForFilter) && catListForFilter.map((item) => <CommonCardTwoComponent key={item._id + Date.now()} id={item._id} className="latestArticlesItem" title={item.title} description={item.postText} category={item.category} image={item.photo.data} imageType={item.contentType} date={item.createdAt} />)
                 ) : (
                   <Alert severity="warning">{`You haven't any data`}</Alert>
                 )}
@@ -170,9 +149,7 @@ export default function Home() {
                 <HeaderHolder>
                   <CommonHeaderComponent title="Categories" variant="h2" />
                 </HeaderHolder>
-                <List>
-                  {categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} id={items._id} value={items.category} icon={<Category />} />)}
-                </List>
+                <List>{categoryStatus === status.loading ? <SkeletonLoader height={20} count={5} /> : Array.isArray(categoryItems) && categoryItems.map((items) => <CommonList key={items._id} id={items._id} value={items.category} icon={<Category />} />)}</List>
                 {catListForFilter !== "" && (
                   <Box className="btnHolder">
                     <Button
