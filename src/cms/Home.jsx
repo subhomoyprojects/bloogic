@@ -88,7 +88,7 @@ export default function Home() {
               <CommonHeaderComponent title="You can learn" variant="h2" />
             </HeaderHolder>
             <SliderHolder>
-              <Swiper slidesPerView={1} modules={[Navigation, Autoplay]} navigation autoplay={{ autoplay: true }} loop>
+              <Swiper slidesPerView={1} modules={[Navigation, Autoplay]} navigation>
                 {Array.isArray(courseItemsArray) &&
                   courseItemsArray.map((items, index) => (
                     <SwiperSlide key={index * 11}>
@@ -96,7 +96,7 @@ export default function Home() {
                         {Array.isArray(items) &&
                           items.map((subItem, subIndex) => (
                             <Box className="sliderItemHolder sliderCourseItemHolder" key={subIndex * 11}>
-                              {subIndex === 0 && subItem && <CourseFirstCard id={subItem._id} duration={subItem.duration} name={subItem.name} fees={subItem.fees} requirement={subItem.requirement} />}
+                              {subIndex === 0 && subItem && <CourseFirstCard id={subItem._id} duration={subItem.duration} name={subItem.name} fees={subItem.fees} requirement={subItem.requirement} date={subItem.createdAt} />}
                               {subIndex !== 0 && subItem && (
                                 <Box className="sliderRight">
                                   <CourseComponent className="mostView" id={subItem._id} name={subItem.name} duration={subItem.duration} fees={subItem.fees} date={subItem.createdAt} requirement={subItem.requirement} />

@@ -49,6 +49,11 @@ export const CommonCardWrapper = styled(Box)`
           max-height: 50rem;
           object-fit: contain;
         }
+        .latestContent {
+          strong {
+            display: block;
+          }
+        }
       }
       .sliderRight {
         & > * {
