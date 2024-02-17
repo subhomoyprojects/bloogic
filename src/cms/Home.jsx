@@ -22,6 +22,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
 import { Navigation, Autoplay } from "swiper/modules";
 import CourseComponent from "../components/CourseComponent";
+import CourseFirstCard from "../components/CourseFirstCard";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -91,17 +92,19 @@ export default function Home() {
                 {Array.isArray(courseItemsArray) &&
                   courseItemsArray.map((items, index) => (
                     <SwiperSlide key={index * 11}>
-                      {Array.isArray(items) &&
-                        items.map((subItem, index) => (
-                          <Box key={index * 12} className="sliderItem">
-                            <Box className="sliderItemHolder">
-                              {/* <CommonCard /> */}
-                              <Box className="sliderRight">
-                                <CourseComponent className="mostView" id={subItem._id} name={subItem.name} duration={subItem.duration} fees={subItem.fees} date={subItem.createdAt} requirement={subItem.requirement} />
-                              </Box>
+                      <Box className="sliderItem sliderCourseItem">
+                        {Array.isArray(items) &&
+                          items.map((subItem, subIndex) => (
+                            <Box className="sliderItemHolder sliderCourseItemHolder" key={subIndex * 11}>
+                              {subIndex === 0 && subItem && <CourseFirstCard id={subItem._id} duration={subItem.duration} name={subItem.name} fees={subItem.fees} requirement={subItem.requirement} />}
+                              {subIndex !== 0 && subItem && (
+                                <Box className="sliderRight">
+                                  <CourseComponent className="mostView" id={subItem._id} name={subItem.name} duration={subItem.duration} fees={subItem.fees} date={subItem.createdAt} requirement={subItem.requirement} />
+                                </Box>
+                              )}
                             </Box>
-                          </Box>
-                        ))}
+                          ))}
+                      </Box>
                     </SwiperSlide>
                   ))}
               </Swiper>

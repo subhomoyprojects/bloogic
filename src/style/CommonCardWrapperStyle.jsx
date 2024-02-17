@@ -25,6 +25,42 @@ export const CommonCardWrapper = styled(Box)`
       }
     }
   }
+  .sliderCourseItem {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    & > * {
+      &:first-of-type {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+      }
+      &:nth-of-type(2) {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+      }
+      &:nth-of-type(3) {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+      }
+      .commonCard {
+        background-color: ${ColorPalette.lightSky};
+        img {
+          min-height: 50rem;
+          max-height: 50rem;
+          object-fit: contain;
+        }
+      }
+      .sliderRight {
+        & > * {
+          height: 100%;
+        }
+      }
+      .commonCard,
+      .sliderRight {
+        width: 100%;
+      }
+    }
+  }
 `;
 
 export const CommonCardTwo = styled(Box)`
@@ -53,7 +89,7 @@ export const CommonCardTwo = styled(Box)`
     flex-wrap: wrap;
     overflow: hidden;
     transition: all 0.3s;
-    width: calc((100% / 4) - (2rem - (2rem / 4)));
+    width: calc((100% / 4) - (2rem - (2rem / 4))) !important;
     & > * {
       &.imgHolderTwo {
         width: 100%;
