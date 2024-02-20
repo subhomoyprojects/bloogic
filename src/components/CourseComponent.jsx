@@ -4,8 +4,16 @@ import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import assets from "../assets";
 import { courseImage } from "../redux/Helper";
+import { format, parseISO } from "date-fns";
+import { useEffect, useState } from "react";
 
 export default function CourseComponent({ name, requirement, duration, fees, date, className, id }) {
+  const [dateFormat, setDateFormat] = useState(null);
+  useEffect(() => {
+    let dateFormat = parseISO(date);
+    let dateFormatFinal = format(dateFormat, "MMMM, dd yyyy");
+    setDateFormat(dateFormatFinal);
+  }, [date]);
   return (
     <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">
@@ -20,7 +28,7 @@ export default function CourseComponent({ name, requirement, duration, fees, dat
           <strong>{requirement}</strong>
           <Box className="dateView">
             <span>
-              <strong>{duration}</strong> {date}
+              <strong>{duration}</strong> {dateFormat}
             </span>
             <ul>
               <li>

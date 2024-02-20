@@ -4,8 +4,16 @@ import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { CustomCard } from "../style/CustomCardStyle";
 import { courseImage } from "../redux/Helper";
+import { format, parseISO } from "date-fns";
+import { useEffect, useState } from "react";
 
 export default function CourseFirstCard({ id, name, requirement, duration, fees, date }) {
+  const [dateFormat, setDateFormat] = useState(null);
+  useEffect(() => {
+    let dateFormat = parseISO(date);
+    let dateFormatFinal = format(dateFormat, "MMMM, dd yyyy");
+    setDateFormat(dateFormatFinal);
+  }, [date]);
   return (
     <>
       <CustomCard className="item commonCard">
@@ -24,7 +32,7 @@ export default function CourseFirstCard({ id, name, requirement, duration, fees,
           ) : null}
           <Box className="commentSection">
             <p>
-              <span>{date}</span> | <span>6 min read</span>
+              <span>{dateFormat}</span> | <span>6 min read</span>
             </p>
             <ul>
               <li>

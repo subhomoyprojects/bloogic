@@ -4,8 +4,16 @@ import { CommonCardTwo } from "../style/CommonCardWrapperStyle";
 import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { teamImage } from "../redux/Helper";
+import { format, parseISO } from "date-fns";
+import { useEffect, useState } from "react";
 
 export default function TeamComponent({ className, name, possession, date, id }) {
+  const [dateFormat, setDateFormat] = useState(null);
+  useEffect(() => {
+    let dateFormat = parseISO(date);
+    let dateFormatFinal = format(dateFormat, "MMMM, dd yyyy");
+    setDateFormat(dateFormatFinal);
+  }, [date]);
   return (
     <CommonCardTwo className={className}>
       <figure className="imgHolderTwo">
@@ -16,7 +24,7 @@ export default function TeamComponent({ className, name, possession, date, id })
         <Box className="dataCategory">
           <strong>{possession}</strong>
           <Box className="dateView">
-            <span>{date}</span>
+            <span>{dateFormat}</span>
             <ul>
               <li>
                 <IconButton aria-label="visibility">
