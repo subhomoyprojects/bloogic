@@ -11,6 +11,9 @@ export const CommonCardWrapper = styled(Box)`
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+    & > p {
+      width: 100%;
+    }
     & > * {
       flex: 0 0 auto;
       width: calc((100% / 2) - (2rem - (2rem / 2)));

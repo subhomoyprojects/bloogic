@@ -20,7 +20,7 @@ import { TeamAsyncThunk } from "../redux/slice/TeamSlice";
 import { CourseAsyncThunk } from "../redux/slice/CourseSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/bundle";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import CourseComponent from "../components/CourseComponent";
 import CourseFirstCard from "../components/CourseFirstCard";
 
@@ -39,7 +39,7 @@ export default function Home() {
   const { blogItems, blogStatus, categoryStatus, categoryItems, latestStatus, latestPosts, categoryValue } = useSelector((state) => state.Blog);
   const { teamItems, teamStatus } = useSelector((state) => state.Team);
 
-  const { courseItems } = useSelector((state) => state.Course);
+  const { courseItems, courseStatus } = useSelector((state) => state.Course);
 
   useEffect(() => {
     if (categoryValue !== "") {
@@ -86,10 +86,24 @@ export default function Home() {
           <CommonCardWrapper>
             <HeaderHolder>
               <CommonHeaderComponent title="You can learn" variant="h2" />
+              <Box className="arrowHolder">
+                <button type="button" className="swiper-button-prev"></button>
+                <button type="button" className="swiper-button-next"></button>
+              </Box>
             </HeaderHolder>
             <SliderHolder>
-              <Swiper slidesPerView={1} modules={[Navigation, Autoplay]} navigation>
-                {Array.isArray(courseItemsArray) &&
+              <Swiper
+                slidesPerView={1}
+                modules={[Autoplay, Navigation]}
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                }}
+              >
+                {courseStatus === status.loading ? (
+                  <SkeletonLoader height={20} count={5} />
+                ) : (
+                  Array.isArray(courseItemsArray) &&
                   courseItemsArray.map((items, index) => (
                     <SwiperSlide key={index * 11}>
                       <Box className="sliderItem sliderCourseItem">
@@ -106,7 +120,8 @@ export default function Home() {
                           ))}
                       </Box>
                     </SwiperSlide>
-                  ))}
+                  ))
+                )}
               </Swiper>
             </SliderHolder>
           </CommonCardWrapper>
