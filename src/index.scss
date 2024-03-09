@@ -57,16 +57,16 @@ p {
   padding: 0 !important;
 }
 .text-center {
-  text-align: center;
-  justify-content: center;
+  text-align: center !important;
+  justify-content: center !important;
 }
 .text-left {
-  text-align: left;
-  justify-content: flex-start;
+  text-align: left !important;
+  justify-content: flex-start !important;
 }
 .text-right {
-  text-align: right;
-  justify-content: flex-end;
+  text-align: right !important;
+  justify-content: flex-end !important;
 }
 .error {
   font-size: 1.1rem !important;

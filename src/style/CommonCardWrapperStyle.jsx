@@ -191,19 +191,25 @@ export const CommonCardTwo = styled(Box)`
     width: auto;
     flex: 0 0 auto;
     li {
-      button {
-        color: ${ColorPalette.textColor};
-        font-size: clamp(1.4rem, 1vw, 1.8rem);
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        &:hover {
-          opacity: 0.7;
+      button,
+      a {
+        &:not(.applyCourse) {
+          color: ${ColorPalette.textColor};
+          font-size: clamp(1.4rem, 1vw, 1.8rem);
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          &:hover {
+            opacity: 0.7;
+          }
+          svg {
+            width: 1.2em;
+            height: 1.2em;
+            transition: all 0.3s;
+          }
         }
-        svg {
-          width: 1.2em;
-          height: 1.2em;
-          transition: all 0.3s;
+        &.applyCourse {
+          font-size: 1.2rem;
         }
       }
     }

@@ -78,7 +78,7 @@ const PrivateRouteNames = [
     Component: <Profile />,
   },
   {
-    path: "/course",
+    path: "/course/:id",
     Component: <Course />,
   },
 ];

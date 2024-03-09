@@ -18,16 +18,11 @@ export const Navigation = [
   },
   {
     id: "nav4",
-    link: "/course",
-    label: "Course",
-  },
-  {
-    id: "nav5",
     link: "/service",
     label: "Service",
   },
   {
-    id: "nav6",
+    id: "nav5",
     link: "/category",
     label: "Category",
     subLink: [
@@ -79,7 +74,7 @@ export const Navigation = [
     ],
   },
   {
-    id: "nav7",
+    id: "nav6",
     link: "/contact",
     label: "Contact",
   },

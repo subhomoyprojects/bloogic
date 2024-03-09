@@ -1,24 +1,26 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import assets from "../assets";
-import { Textsms, Visibility } from "@mui/icons-material";
 import PropTypes from "prop-types";
 import { CustomCard } from "../style/CustomCardStyle";
 import { courseImage } from "../redux/Helper";
 import { format, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
+import { CommonBtn } from "../style/CommonBtnStyle";
+import { useNavigate } from "react-router-dom";
 
-export default function CourseFirstCard({ id, name, requirement, duration, fees, date }) {
+export default function CourseFirstCard({ courseId, name, requirement, duration, fees, date, slug }) {
   const [dateFormat, setDateFormat] = useState(null);
   useEffect(() => {
     let dateFormat = parseISO(date);
     let dateFormatFinal = format(dateFormat, "MMMM, dd yyyy");
     setDateFormat(dateFormatFinal);
   }, [date]);
+  const navigate = useNavigate();
   return (
     <>
       <CustomCard className="item commonCard">
         <figure>
-          <img src={id ? courseImage(id) : assets.noImage} alt="" />
+          <img src={courseId ? courseImage(courseId) : assets.noImage} alt="" />
           <Typography variant="h4" className="cardCatagories">
             {name}
           </Typography>
@@ -36,14 +38,9 @@ export default function CourseFirstCard({ id, name, requirement, duration, fees,
             </p>
             <ul>
               <li>
-                <IconButton aria-label="visibility">
-                  <Visibility />
-                </IconButton>
-              </li>
-              <li>
-                <IconButton aria-label="visibility" target="_blank" href="https://api.whatsapp.com/send?text=https://www.bloggic.com/10-best-foods-for-high-blood-pressure/">
-                  <Textsms />
-                </IconButton>
+                <CommonBtn type="submit" variant="contained" onClick={() => navigate(`/course/${slug}`)}>
+                  Apply Course
+                </CommonBtn>
               </li>
             </ul>
           </Box>
@@ -53,10 +50,11 @@ export default function CourseFirstCard({ id, name, requirement, duration, fees,
   );
 }
 CourseFirstCard.propTypes = {
-  id: PropTypes.string,
+  courseId: PropTypes.string,
+  slug: PropTypes.string,
   name: PropTypes.string,
   requirement: PropTypes.string,
   duration: PropTypes.string,
   date: PropTypes.string,
-  fees: PropTypes.number,
+  fees: PropTypes.string,
 };

@@ -110,10 +110,10 @@ export default function Home() {
                         {Array.isArray(items) &&
                           items.map((subItem, subIndex) => (
                             <Box className="sliderItemHolder sliderCourseItemHolder" key={subIndex * 11}>
-                              {subIndex === 0 && subItem && <CourseFirstCard id={subItem._id} duration={subItem.duration} name={subItem.name} fees={subItem.fees} requirement={subItem.requirement} date={subItem.createdAt} />}
+                              {subIndex === 0 && subItem && <CourseFirstCard slug={subItem.slug} courseId={subItem._id} duration={subItem.duration} name={subItem.name} fees={subItem.fees} requirement={subItem.requirement} date={subItem.createdAt} />}
                               {subIndex !== 0 && subItem && (
                                 <Box className="sliderRight">
-                                  <CourseComponent className="mostView" id={subItem._id} name={subItem.name} duration={subItem.duration} fees={subItem.fees} date={subItem.createdAt} requirement={subItem.requirement} />
+                                  <CourseComponent className="mostView" slug={subItem.slug} courseId={subItem._id} name={subItem.name} duration={subItem.duration} fees={subItem.fees} date={subItem.createdAt} requirement={subItem.requirement} />
                                 </Box>
                               )}
                             </Box>
