@@ -6,6 +6,8 @@ import { Container, FormHelperText, InputLabel, OutlinedInput } from "@mui/mater
 import { CommonBtn } from "../style/CommonBtnStyle";
 import { useForm } from "react-hook-form";
 import { CourseWrapperStyle } from "../style/CourseWrapperStyle";
+import { useDispatch } from "react-redux";
+import { CourseApplyAsyncThunk } from "../redux/slice/CourseSlice";
 
 export default function Course() {
   const { id } = useParams();
@@ -14,8 +16,26 @@ export default function Course() {
     formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm();
+  const dispatch = useDispatch();
 
-  const onSubmit = () => {};
+  const onSubmit = async (data) => {
+    try {
+      const { name, email, phone, city, address, qualification, programing_knowledge, experiance } = data;
+      const payload = {
+        name: name,
+        email: email,
+        phone: phone,
+        city: city,
+        address: address,
+        qualification: qualification,
+        programing_knowledge: programing_knowledge,
+        experiance: experiance,
+      };
+      await dispatch(CourseApplyAsyncThunk(payload));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <section>
@@ -57,19 +77,19 @@ export default function Course() {
 
               <CustomInputHolder variant="outlined">
                 <InputLabel>Enter Your Qualification</InputLabel>
-                <OutlinedInput type="number" label="Enter Your Qualification" {...register("qualification", { required: true })} error={!!errors.qualification} />
+                <OutlinedInput type="text" label="Enter Your Qualification" {...register("qualification", { required: true })} error={!!errors.qualification} />
                 <FormHelperText>{errors.qualification?.type == "required" ? "Enter Your Qualification" : ""}</FormHelperText>
               </CustomInputHolder>
 
               <CustomInputHolder variant="outlined">
                 <InputLabel>Enter Your Programming Knowledge</InputLabel>
-                <OutlinedInput type="number" label="Enter Your Phone Number" {...register("programing_knowledge", { required: true })} error={!!errors.programing_knowledge} />
+                <OutlinedInput type="text" label="Enter Your Programming Knowledge" {...register("programing_knowledge", { required: true })} error={!!errors.programing_knowledge} />
                 <FormHelperText>{errors.programing_knowledge?.type == "required" ? "Enter Your Programming Knowledge" : ""}</FormHelperText>
               </CustomInputHolder>
 
               <CustomInputHolder variant="outlined">
                 <InputLabel>Enter Your Experience</InputLabel>
-                <OutlinedInput type="number" label="Enter Your Phone Number" {...register("experiance", { required: true })} error={!!errors.experiance} />
+                <OutlinedInput type="text" label="Enter Your Experience" {...register("experiance", { required: true })} error={!!errors.experiance} />
                 <FormHelperText>{errors.experiance?.type == "required" ? "Enter Your Experience" : ""}</FormHelperText>
               </CustomInputHolder>
 
