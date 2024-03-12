@@ -8,10 +8,20 @@ export const CourseAsyncThunk = createAsyncThunk("/course", async () => {
   return resData;
 });
 
-export const CourseApplyAsyncThunk = createAsyncThunk("/course/apply", async (formData) => {
-  let res = await axiosInstance.post("/course", formData);
-  let resData = res?.data;
-  return resData;
+// export const CourseApplyAsyncThunk = createAsyncThunk("/course/apply", async (formData,id) => {
+//   let res = await axiosInstance.post(`/course/${id}`, formData);
+//   let resData = res?.data;
+//   return resData;
+// });
+
+export const CourseApplyAsyncThunk = createAsyncThunk("/course/apply", async ({ payload, id }, thunkAPI) => {
+  try {
+    const response = await axiosInstance.post(`courses/apply/${id}`, payload);
+    return response.data;
+  } catch (error) {
+   
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
 });
 
 const CourseSlice = createSlice({
@@ -39,11 +49,11 @@ const CourseSlice = createSlice({
       })
       .addCase(CourseApplyAsyncThunk.fulfilled, (state, { payload }) => {
         state.courseStatus = status.idle;
-        if (payload.success) {
-          toast.success(`${payload.message}`);
-        } else {
-          toast.error(`${payload.message}`);
-        }
+        // if (payload.success) {
+        //   toast.success(`${payload.message}`);
+        // } else {
+        //   toast.error(`${payload.message}`);
+        // }
       })
       .addCase(CourseApplyAsyncThunk.rejected, (state) => {
         state.courseStatus = status.error;

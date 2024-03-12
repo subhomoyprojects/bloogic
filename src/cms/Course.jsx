@@ -31,7 +31,7 @@ export default function Course() {
         programing_knowledge: programing_knowledge,
         experiance: experiance,
       };
-      await dispatch(CourseApplyAsyncThunk(payload));
+      await dispatch(CourseApplyAsyncThunk({payload,id}));
     } catch (error) {
       console.log(error);
     }

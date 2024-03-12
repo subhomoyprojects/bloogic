@@ -6,7 +6,7 @@ import { courseImage } from "../redux/Helper";
 import { format, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 import { CommonBtn } from "../style/CommonBtnStyle";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CourseFirstCard({ courseId, name, requirement, duration, fees, date, slug }) {
   const [dateFormat, setDateFormat] = useState(null);
@@ -38,9 +38,10 @@ export default function CourseFirstCard({ courseId, name, requirement, duration,
             </p>
             <ul>
               <li>
-                <CommonBtn type="submit" variant="contained" onClick={() => navigate(`/course/${slug}`)}>
+                {/* <CommonBtn type="submit" variant="contained" onClick={() => navigate(`/course/${slug}`)}>
                   Apply Course
-                </CommonBtn>
+                </CommonBtn> */}
+                <Link to={`/course/${courseId}`}>Apply Course</Link>
               </li>
             </ul>
           </Box>
