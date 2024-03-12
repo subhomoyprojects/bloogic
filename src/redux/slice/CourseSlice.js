@@ -19,7 +19,6 @@ export const CourseApplyAsyncThunk = createAsyncThunk("/course/apply", async ({ 
     const response = await axiosInstance.post(`courses/apply/${id}`, payload);
     return response.data;
   } catch (error) {
-   
     return thunkAPI.rejectWithValue(error.response.data);
   }
 });
@@ -49,11 +48,11 @@ const CourseSlice = createSlice({
       })
       .addCase(CourseApplyAsyncThunk.fulfilled, (state, { payload }) => {
         state.courseStatus = status.idle;
-        // if (payload.success) {
-        //   toast.success(`${payload.message}`);
-        // } else {
-        //   toast.error(`${payload.message}`);
-        // }
+        if (payload.success) {
+          toast.success(`${payload.message}`);
+        } else {
+          toast.error(`${payload.message}`);
+        }
       })
       .addCase(CourseApplyAsyncThunk.rejected, (state) => {
         state.courseStatus = status.error;
