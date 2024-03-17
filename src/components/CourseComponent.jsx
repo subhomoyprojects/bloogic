@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { CommonBtn } from "../style/CommonBtnStyle";
 import { useNavigate } from "react-router-dom";
 
-export default function CourseComponent({ name, requirement, duration, fees, date, className, courseId, slug }) {
+export default function CourseComponent({ name, requirement, duration, fees, date, className, courseId }) {
   const [dateFormat, setDateFormat] = useState(null);
   useEffect(() => {
     let dateFormat = parseISO(date);
@@ -34,7 +34,7 @@ export default function CourseComponent({ name, requirement, duration, fees, dat
             </span>
             <ul>
               <li>
-                <CommonBtn className="applyCourse" type="submit" variant="contained" onClick={() => navigate(`/course/${slug}`)}>
+                <CommonBtn className="applyCourse" type="submit" variant="contained" onClick={() => navigate(`/course/${courseId}`)}>
                   Apply Course
                 </CommonBtn>
               </li>
@@ -47,7 +47,6 @@ export default function CourseComponent({ name, requirement, duration, fees, dat
 }
 CourseComponent.propTypes = {
   courseId: PropTypes.string,
-  slug: PropTypes.string,
   className: PropTypes.string,
   name: PropTypes.string,
   requirement: PropTypes.string,
