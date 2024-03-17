@@ -6,17 +6,25 @@ import { Container, FormHelperText, InputLabel, OutlinedInput } from "@mui/mater
 import { CommonBtn } from "../style/CommonBtnStyle";
 import { useForm } from "react-hook-form";
 import { CourseWrapperStyle } from "../style/CourseWrapperStyle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CourseApplyAsyncThunk } from "../redux/slice/CourseSlice";
+import { useEffect, useState } from "react";
 
 export default function Course() {
   const { id } = useParams();
+  const [storeFindId, setStoreFindId] = useState("");
   const {
     register,
     formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm();
   const dispatch = useDispatch();
+  const { courseItems } = useSelector((state) => state.Course);
+
+  useEffect(() => {
+    let findId = courseItems.find((items) => items._id === id);
+    setStoreFindId(findId.slug);
+  }, [courseItems, id]);
 
   const onSubmit = async (data) => {
     try {
@@ -31,7 +39,7 @@ export default function Course() {
         programing_knowledge: programing_knowledge,
         experiance: experiance,
       };
-      await dispatch(CourseApplyAsyncThunk({payload,id}));
+      await dispatch(CourseApplyAsyncThunk({ payload, id }));
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +48,7 @@ export default function Course() {
     <>
       <section>
         <HeaderHolder className="text-center">
-          <CommonHeaderComponent title={`Apply Course (${id})`} variant="h2" />
+          <CommonHeaderComponent title={`Apply Course (${storeFindId})`} variant="h2" />
         </HeaderHolder>
         <Container maxWidth="sm">
           <CourseWrapperStyle>
