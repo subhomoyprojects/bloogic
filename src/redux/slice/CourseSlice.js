@@ -48,7 +48,7 @@ const CourseSlice = createSlice({
       })
       .addCase(CourseApplyAsyncThunk.fulfilled, (state, { payload }) => {
         state.courseStatus = status.idle;
-        if (payload.status === 200) {
+        if (state.courseStatus === status.idle) {
           toast.success(`${payload.message}`);
         } else {
           toast.error(`${payload.message}`);
